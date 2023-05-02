@@ -1,12 +1,15 @@
 import React from "react";
-import { Container, Grid, Image } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 class Servico extends React.Component {
 
     render() {
         return (
             <>
-                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
+                <Grid textAlign='center' 
+                style={{ height: '90vh' }} verticalAlign='middle'>
+
+
                     
                 </Grid>
             </>
