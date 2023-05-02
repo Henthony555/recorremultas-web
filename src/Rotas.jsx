@@ -6,6 +6,7 @@ import Login from './views/login/Login';
 import Usuario from './views/usuario/Usuario';
 import Servico from './views/servico/Servico';
 import Cadastro from './views/cadastro/Cadastro';
+import EsqueceuSenha from './views/login/EqueceuSenha';
 
 function Rotas() {
     return (
@@ -16,6 +17,7 @@ function Rotas() {
                 <Route path="cadastro" element={ <Cadastro/> } />
                 <Route path="usuario" element={ <Usuario/> } />
                 <Route path="servico" element={ <Servico/> } />
+                <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
             </Routes>
         </>
     )
