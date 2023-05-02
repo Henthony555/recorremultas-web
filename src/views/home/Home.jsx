@@ -1,17 +1,16 @@
 import React from "react";
-import { Container, Grid, Image } from 'semantic-ui-react';
+import logo from '../../assets/img/logoGrande.png';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
-class Home extends React.Component{
+class Home extends React.Component {
 
-    render(){
-        return(
-            <div>
-                <div style={{marginTop: '1%', height: '90vh'}}>
-                    <Container>
-                        <h1>home</h1>
-                    </Container>
-                </div>
-            </div>
+    render() {
+        return (
+            <>
+                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
+                    Home
+                </Grid>
+            </>
         )
     }
 }

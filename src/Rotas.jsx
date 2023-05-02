@@ -6,7 +6,7 @@ import Login from './views/login/Login';
 import Usuario from './views/usuario/Usuario';
 import Servico from './views/servico/Servico';
 import Cadastro from './views/cadastro/Cadastro';
-import EsqueceuSenha from './views/login/EqueceuSenha';
+import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
 
 function Rotas() {
     return (

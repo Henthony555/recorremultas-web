@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Segment, Icon, Button, Grid, Popup } from 'semantic-ui-react';
+import { Button, Grid, Popup, Segment } from 'semantic-ui-react';
 
 
 class Footer extends React.Component {
@@ -9,7 +9,7 @@ class Footer extends React.Component {
         return (
             <>
                 <Segment vertical color='yellow'>
-                    <Grid columns='equal'>
+                    <Grid columns={3} textAlign='center' verticalAlign='middle'>
                         <Grid.Column>
                             &nbsp;
                             &nbsp;
@@ -38,6 +38,10 @@ class Footer extends React.Component {
                                 } />
                             </Link>
 
+                        </Grid.Column>
+
+                        <Grid.Column as='h4'>
+                            Projeto feito com propósitos acadêmicos - IFPE Jaboatão
                         </Grid.Column>
 
                         <Grid.Column textAlign="right">
