@@ -8,7 +8,7 @@ class Login extends React.Component {
     render() {
         return (
             <>
-                <Grid textAlign='center' style={{ height: '90vh', marginTop: '2%' }} >
+                <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }} >
                     <Grid.Column style={{ maxWidth: 450 }}>
 
                         <Image src={logo} size="medium" centered />
