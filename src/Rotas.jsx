@@ -7,6 +7,8 @@ import Usuario from './views/usuario/Usuario';
 import Servico from './views/servico/Servico';
 import Cadastro from './views/cadastro/Cadastro';
 import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
+import Agencias from './views/agencias/Agencias';
+import ADMagencias from './views/admAgencias/admAgencias';
 
 function Rotas() {
     return (
@@ -18,6 +20,8 @@ function Rotas() {
                 <Route path="usuario" element={ <Usuario/> } />
                 <Route path="servico" element={ <Servico/> } />
                 <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
+                <Route path="agencias" element={ <Agencias/> } />
+                <Route path="admagencias" element={ <ADMagencias/> } />
             </Routes>
         </>
     )
