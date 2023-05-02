@@ -35,7 +35,9 @@ class MenuSistema extends React.Component {
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/servico'
-                        />
+                            >
+                            Petição
+                        </Menu.Item>
                         <Menu.Item
                             name='meus dados'
                             active={this.state.activeItem === 'meus dados'}
