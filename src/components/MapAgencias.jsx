@@ -10,8 +10,8 @@ const MapAgencias = () => {
   });
 
   const position = {
-    lat: -27.590824,
-    lng: -48.551262,
+    lat: -8.110482,
+    lng:  -35.015466,
   };
 
   return (
