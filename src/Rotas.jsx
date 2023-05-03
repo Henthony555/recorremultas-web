@@ -8,7 +8,7 @@ import Servico from './views/servico/Servico';
 import Cadastro from './views/cadastro/Cadastro';
 import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
 import Agencias from './views/agencias/Agencias';
-import ADMagencias from './views/admAgencias/admAgencias';
+import ADMagencias from './views/adm/admAgencias';
 
 function Rotas() {
     return (

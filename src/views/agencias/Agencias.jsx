@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Form, Grid, Image, Container, Segment, Divider, Icon } from 'semantic-ui-react'
+import MapAgencias from "../../components/MapAgencias";
+import { Grid } from 'semantic-ui-react';
 
 class Agencias extends React.Component {
 
     render() {
         return (
             <>
-                <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }} >
-                    <h1>Agências</h1>
+                <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }}>
+                    <Grid.Column style={{ maxWidth: 600}}>
+                        <MapAgencias />
+                    </Grid.Column>
                 </Grid>
             </>
         )
