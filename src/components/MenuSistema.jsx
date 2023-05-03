@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu, Image, Segment, Button, Icon } from "semantic-ui-react"
+import { Button, Icon, Image, Menu, Segment } from "semantic-ui-react";
 import logo from '../assets/img/logoGrande.png';
 
 class MenuSistema extends React.Component {
@@ -30,11 +30,11 @@ class MenuSistema extends React.Component {
                             to='/'
                         />
                         <Menu.Item
-                            name='serviço'
+                            name='Criar Petição'
                             active={this.state.activeItem === 'serviço'}
                             onClick={this.handleItemClick}
                             as={Link}
-                            to='/servico'
+                            to='/criarPeticao'
                         />
                         <Menu.Item
                             name='meus dados'
