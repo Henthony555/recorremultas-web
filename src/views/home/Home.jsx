@@ -1,31 +1,95 @@
 import React from "react";
-<<<<<<< HEAD
-import { Grid, Image } from 'semantic-ui-react';
-import background from '../../assets/img/fundo.jpg';
-
-=======
-import { Grid } from 'semantic-ui-react';
->>>>>>> 016f478b4e1e9721755eebbb0e562b08b323664e
+import { Grid, Image, Header, Icon, Rating, Segment, Table, Card, Container } from 'semantic-ui-react';
+import bacgrounds from '../../assets/img/telahome.png'
 
 class Home extends React.Component {
 
     render() {
         return (
             <>
-             <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-                    Seja Bem Vindo!
-                   <Image src={background}  fluid />
-                   
-            </Grid>
+        
+             <Grid >       
+                <Image src={ bacgrounds}  fluid /> 
+           </Grid>
 
+             <Grid textAlign='center' as='h2'  >
+                 <Container text>
+                            <p>
+
+
+
+                            </p>
+                            <p> 
+                                Bem-vindo ao nosso site! Nossa Missão é ajudá-lo a recorrer a multas de trânsito. 
+                            Sabemos que receber uma multa de trânsito pode ser frustrante e estressante,
+                            mas estamos aqui para ajudá-lo a entender seus direitos e opções para recorrer 
+                            a essas infrações.
+                            </p>
+
+                            <p>
+                                 Nós entendemos que há muitos motivos pelos quais você pode ter recebido uma multa,
+                             e estamos aqui para ajudá-lo a entender o processo de recorrer a ela. Sabemos que 
+                             pode ser difícil lidar com esses assuntos sozinho, mas estamos aqui para guiá-lo 
+                             através dos passos necessários para recorrer a sua multa com confiança.
+                            </p>
+                       
+                            <p>
+                                Em nosso site, você encontrará informações valiosas sobre o processo de recorrer a multas,
+                             incluindo as etapas necessárias para apresentar uma defesa prévia, como funciona o sistema 
+                             de pontuação de motoristas e muito mais. Além disso, nosso site apresenta dicas úteis para
+                             ajudá-lo a evitar multas no futuro e manter-se seguro nas estradas.
+                            </p>
+
+                            <p>
+                                Nossa equipe está pronta para ajudá-lo em todas as etapas do processo, desde a análise 
+                            da sua multa até a apresentação da sua defesa. Entendemos que cada caso é único, e estamos 
+                            comprometidos em fornecer uma abordagem personalizada para atender às suas necessidades 
+                            específicas.
+                            </p>
+                     
+                  </Container>
+             </Grid>
            
              <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-                    Seja Bem Vindo!
-                </Grid>
+                 <Grid.Column style={{ maxWidth: 850 }}>
+                        <Segment.Group stacked>
+                            <Segment color="Red">
+                                <Header as='h3' color="red" icon>   
+                                    <Icon name='thumbs up outline' /> Avalie nosso site </Header>
+                                </Segment>
+                        </Segment.Group>
 
+                 <Table celled padded>
+                    <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell textAlign="center">Avaliação</Table.HeaderCell>
+                        <Table.HeaderCell textAlign="center">Deixe seu comentário ou Sugestão</Table.HeaderCell>
+                    </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                    <Table.Row>
+                        <Table.Cell textAlign="center">
+                        <Rating icon='star' defaultRating={5} maxRating={5}/>
+                        </Table.Cell>
+                        <Table.Cell textAlign="center">                   
+                              <Card>                   
+                                 <input type='text' placeholder='Feedback' maxLength={100} Fluid />
+                            </Card>
+                            
+                        </Table.Cell>
+                      
+                    </Table.Row>
+                 
+                    </Table.Body>
+                </Table>
+            
+             </Grid.Column>
+        </Grid >
           </>
        )
     }
 }
 
 export default Home;
+
