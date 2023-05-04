@@ -1,44 +1,60 @@
 import React from "react";
-import { Container, Grid, Image, List } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
+import { Button, Container, Divider, Grid, Image, List } from 'semantic-ui-react';
+import perfil from "../../assets/img/square-image.png";
 
-class Usuario extends React.Component{
+class Servico extends React.Component {
 
-    render(){
-        return(
-            <div>
-                <div style={{marginTop: '5%'}}>
 
-                <h2 class="ui header"><img src="/images/avatar/large/patrick.png" class="ui circular image"/> Usuario</h2>
+    render() {
+        return (
+            
+            <>
+                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
+                    <div style={{marginTop: '4%'}}>
+                        <Container textAlign="justified" >
+                        <h1 class="ui header"> <Image src={perfil} size='massive' circular/> Usuario</h1>
+                            <Divider/>
+                        
+                            <div style={{marginTop:'5%'}}>
+                               
+                            
 
-<List animated verticalAlign='middle'>
-    <List.Item>
-
-      <List.Content>
-        <List.Header> Dados Cadastados</List.Header>
-      </List.Content>
+     <List animated verticalAlign='middle'>
+  
+     <List.Item>
+    <Button as='a' basic tabIndex='0'
+     title='Dados Cadastrados'>
+          <Link to={'/'}> Dados cadastrados </Link>
+      </Button>
     </List.Item>
 
     <List.Item>
-
-      <List.Content>
-        <List.Header> Suas Petições </List.Header>
-      </List.Content>
+    <Button as='a' basic tabIndex='0'
+     title='Dados Cadastrados'>
+          <Link to={'/'}> Histórico de Petições </Link>
+      </Button>
     </List.Item>
 
-    <List.Item>
 
-      <List.Content>
-        <List.Header> Alterar Senha </List.Header>
-      </List.Content>
+    <List.Item>
+    <Button as='a' basic tabIndex='0'
+     title='Dados Cadastrados'>
+          <Link to={'/esqueceuSenha'}> Alterar Senha </Link>
+      </Button>
     </List.Item>
 
   </List>
-
-
-                </div>
-            </div>
+                            </div>
+                        </Container>
+                    </div>
+                </Grid>
+                
+               
+            </>
+            
         )
     }
 }
 
-export default Usuario;
+export default Servico;
