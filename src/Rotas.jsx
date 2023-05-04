@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
-import Home from './views/home/Home';
-import Login from './views/login/Login';
-import Usuario from './views/usuario/Usuario';
-import Servico from './views/servico/Servico';
+import ADMagencias from './views/adm/admAgencias';
+import Agencias from './views/agencias/Agencias';
+import Avaliacao from './views/Avaliacao/Avaliacao';
 import Cadastro from './views/cadastro/Cadastro';
 import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
-import Agencias from './views/agencias/Agencias';
-import ADMagencias from './views/adm/admAgencias';
+import Home from './views/home/Home';
+import Login from './views/login/Login';
+import Servico from './views/servico/Servico';
+import Usuario from './views/usuario/Usuario';
 
 function Rotas() {
     return (
@@ -22,6 +23,8 @@ function Rotas() {
                 <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
                 <Route path="agencias" element={ <Agencias/> } />
                 <Route path="admagencias" element={ <ADMagencias/> } />
+                <Route path="avaliacao" element={ <Avaliacao/> } />
+                
             </Routes>
         </>
     )

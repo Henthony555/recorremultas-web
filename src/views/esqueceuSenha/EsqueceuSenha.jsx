@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Image, Header, Segment, Divider, Icon } from 'semantic-ui-react'
+import { Button, Divider, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
 
 class EsqueceuSenha extends React.Component {
 
@@ -10,8 +10,8 @@ class EsqueceuSenha extends React.Component {
                 <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Segment.Group stacked>
-                            <Segment color="yellow">
-                                <Header as='h3' color="yellow" icon>
+                            <Segment color="Yellow">
+                                <Header as='h3' color="red" icon>
                                    
                                         <Icon name='lock' />
                                     

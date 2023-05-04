@@ -1,8 +1,8 @@
 import React from "react";
-import logo from '../../assets/img/logo.png';
 import InputMask from 'react-input-mask';
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Image, Segment, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
+import logo from '../../assets/img/logo.png';
 
 class Cadastro extends React.Component {
 
