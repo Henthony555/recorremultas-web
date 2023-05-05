@@ -8,8 +8,8 @@ class Footer extends React.Component {
     render() {
         return (
             <>
-                <Segment vertical color='yellow'>
-                    <Grid columns={3} textAlign='center' verticalAlign='middle'>
+                <Segment vertical color='yellow' >
+                    <Grid columns={3} textAlign='center' verticalAlign='middle' >
                         <Grid.Column>
                             &nbsp;
                             &nbsp;
