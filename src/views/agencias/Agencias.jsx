@@ -1,6 +1,6 @@
 import React from "react";
 import MapAgencias from "../../components/MapAgencias";
-import { Grid, Segment, Container } from 'semantic-ui-react';
+import { Grid, Segment, Container, Icon } from 'semantic-ui-react';
 
 class Agencias extends React.Component {
 
@@ -13,7 +13,7 @@ class Agencias extends React.Component {
                             <Grid.Row>
                                 <Container>
                                 <Segment vertical>
-                                    <h1>Agências</h1>
+                                    <h1><Icon name='map' /> Agências</h1>
                                 </Segment>
                                 <Segment vertical>
                                     <h3>Insira seu endereço para ver a agência mais próxima de você.</h3>

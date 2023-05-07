@@ -14,28 +14,31 @@ class ADMagencias extends React.Component {
                         <Grid columns={2}>
                             <Grid.Column centered>
 
-                                <Form size='large' style={{ marginTop: '2%', maxWidth: 600 }}>
-                                    <h2>ADD Agência</h2>
+                                <Form size='large' style={{ marginTop: '2%', maxWidth: 500 }}>
+                                    <h2>Adicionar nova agência</h2>
+
                                     <Form.Input
                                         fluid
-                                        icon='user circle'
+                                        icon='map marker alternate'
                                         iconPosition='left'
-                                        placeholder='Nome do usuário'
+                                        placeholder='Nome da agência'
                                     />
 
                                     <Form.Input
                                         fluid
-                                        icon
+                                        icon='map marker alternate'
                                         iconPosition='left'
-                                    >
-                                        <Icon name='address card' />
-                                        <InputMask
-                                            placeholder='CPF'
-                                            mask="999.999.999-99"
-                                        />
-                                    </Form.Input>
+                                        placeholder='Latitude'
+                                    />
 
-                                    <Button color='yellow' fluid size='large'>
+                                    <Form.Input
+                                        fluid
+                                        icon='map marker alternate'
+                                        iconPosition='left'
+                                        placeholder='Longitude'
+                                    />
+
+                                    <Button color='yellow' size='large'>
                                         Adicionar
                                     </Button>
 

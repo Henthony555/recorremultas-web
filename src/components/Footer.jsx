@@ -8,7 +8,7 @@ class Footer extends React.Component {
     render() {
         return (
             <>
-                <Segment vertical color='yellow' >
+                <Segment vertical color='yellow' style={{marginTop: '4%'}} >
                     <Grid columns={3} textAlign='center' verticalAlign='middle' >
                         <Grid.Column>
                             &nbsp;
