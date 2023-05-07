@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Divider, Grid, Image, List } from 'semantic-ui-react';
 import perfil from "../../assets/img/square-image.png";
 
+
 class Servico extends React.Component {
 
 

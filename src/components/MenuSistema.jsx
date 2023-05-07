@@ -6,7 +6,7 @@ import logo from '../assets/img/logoGrande.png';
 class MenuSistema extends React.Component {
 
     state = {
-        activeItem: 'home'
+        activeItem: 'home',
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -16,26 +16,29 @@ class MenuSistema extends React.Component {
             <>
                 <Segment inverted color="yellow">
                     <Menu secondary color="red" size="large">
-
-                        <Menu.Item >
-                            <Image src={logo}  size='small' />
+                        <Menu.Item>
+                            <Image src={logo} as={Link} to='/' size='small' />
                         </Menu.Item>
 
-                        {/**/}
+                        {/*
                         <Menu.Item
-                            name='home'
+                            name='Home'
                             active={this.state.activeItem === 'home'}
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/'
                         />
+                        */}
+                        
+                        {/**/}
                         <Menu.Item
-                            name='Criar Petição'
-                            active={this.state.activeItem === 'serviço'}
+                            name='criarPeticao'
+                            active={this.state.activeItem === 'criarPeticao'}
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/criarPeticao'
                         />
+                        
                         <Menu.Item
                             name='meus dados'
                             active={this.state.activeItem === 'meus dados'}
