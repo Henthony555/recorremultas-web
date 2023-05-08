@@ -1,8 +1,13 @@
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
 .map {
-    height: 70vh;
-    width: 100%;
-  }
-  
-  .map-marker {
-    margin-top: -30px;
-  }
+  height: 70vh;
+  width: 100%;
+}
+
+.map-marker {
+  margin-top: -30px;
+}

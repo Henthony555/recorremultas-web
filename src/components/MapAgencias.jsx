@@ -1,42 +1,25 @@
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import React from "react";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { useMemo } from "react";
 import "../assets/css/MapAgencias.css";
 
 
-const MapAgencias = () => {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: "",
+export default function MapAgencias() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
 
-  const position = {
-    lat: -8.110482,
-    lng:  -35.015466,
-  };
+  if (!isLoaded) return <div>Loading...</div>;
+  return <Map />;
+}
+
+function Map() {
+  const center = useMemo(() => ({ lat: -8.110482, lng: -35.015466 }), []);
 
   return (
     <div className="map">
-      {isLoaded ? (
-        <GoogleMap
-          mapContainerStyle={{ width: "100%", height: "100%" }}
-          center={position}
-          zoom={15}
-        >
-          <Marker
-            position={position}
-            options={{
-              label: {
-                text: "Posição Teste",
-                className: "map-marker",
-              },
-            }}
-          />
-        </GoogleMap>
-      ) : (
-        <></>
-      )}
+      <GoogleMap zoom={15} center={center} mapContainerClassName="map-container">
+        <Marker position={center} />
+      </GoogleMap>
     </div>
   );
-};
-
-export default MapAgencias;
+}
