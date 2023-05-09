@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Image, Header, Icon, Rating, Segment, Table, Container } from 'semantic-ui-react';
-import bacgrounds from '../../assets/img/telahome.png'
+import { Container, Grid, Header, Icon, Image, Rating, Segment, Statistic, Table } from 'semantic-ui-react';
+import bacgrounds from '../../assets/img/telahome.png';
 
 class Home extends React.Component {
 
@@ -16,11 +16,12 @@ class Home extends React.Component {
                  <Container text>
                             <p>
 
-
+                            
 
                             </p>
                             <p> 
-                                Bem-vindo ao nosso site! Nossa Missão é ajudá-lo a recorrer a multas de trânsito. 
+                                Bem-vindo ao nosso site! 
+                            Nossa Missão é ajudá-lo a recorrer a multas de trânsito. 
                             Sabemos que receber uma multa de trânsito pode ser frustrante e estressante,
                             mas estamos aqui para ajudá-lo a entender seus direitos e opções para recorrer 
                             a essas infrações.
@@ -83,15 +84,32 @@ class Home extends React.Component {
                                 <div class="ui submit button"><font style={{verticalAlign: 'inherit'}}><font style={{verticalAlign: 'inherit'}}>Enviar</font></font></div>
                                 </div>
                             
-                        </Table.Cell>
-                      
+                        </Table.Cell>                  
                     </Table.Row>
-                 
                     </Table.Body>
                 </Table>
             
              </Grid.Column>
         </Grid >
+
+                  <Grid verticalAlign="center">
+                       <Segment inverted >
+                                    <Statistic color='red' inverted>
+                                    <Statistic.Value>1000</Statistic.Value>
+                                    <Statistic.Label>Petições Aceitas</Statistic.Label>
+                                    </Statistic>
+                                    <Statistic color='orange' inverted>
+                                    <Statistic.Value>1050</Statistic.Value>
+                                    <Statistic.Label>Petições Baixadas</Statistic.Label>
+                                    </Statistic>
+                                    <Statistic color='yellow' inverted>
+                                    <Statistic.Value>500</Statistic.Value>
+                                    <Statistic.Label>CNH SALVAS!</Statistic.Label>
+                                    </Statistic>
+                       </Segment>     
+
+                  </Grid>
+          
           </>
        )
     }
