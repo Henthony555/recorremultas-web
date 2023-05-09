@@ -7,9 +7,9 @@ class Agencias extends React.Component {
     render() {
         return (
             <>
-                <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }}>
+                <Grid textAlign='center' verticalAlign='middle' style={{ miniHeight: '90vh' }}>
                     <Grid.Column style={{ maxWidth: '90%' }}>
-                        <Grid >
+                        <Grid>
                             <Grid.Row>
                                 <Container>
                                 <Segment vertical>

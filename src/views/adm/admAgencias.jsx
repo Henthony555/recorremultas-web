@@ -1,16 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import InputMask from 'react-input-mask';
+import { Button, Form, Grid } from 'semantic-ui-react';
 import MapAgencias from "../../components/MapAgencias";
-import { Button, Form, Grid, Image, Container, Segment, Divider, Icon } from 'semantic-ui-react'
 
 class ADMagencias extends React.Component {
 
     render() {
         return (
             <>
-                <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }}>
-                    <Grid.Column style={{ maxWidth: '90%' }}>
+                <Grid textAlign='center' verticalAlign='middle' style={{ miniHeight: '90vh' }}>
+                    <Grid.Column style={{ maxWidth: '90%'}}>
                         <Grid columns={2}>
                             <Grid.Column centered>
 

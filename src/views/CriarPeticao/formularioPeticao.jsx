@@ -7,7 +7,7 @@ class FormularioPeticao extends React.Component {
         return (
             
             <>
-                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle' >
+                <Grid textAlign='center' style={{ miniHeight: '90vh' }} verticalAlign='middle' >
                     <div style={{marginTop: '3%'}}>
                         <Container textAlign="justified">
                             <h1> Dados Petição</h1>
