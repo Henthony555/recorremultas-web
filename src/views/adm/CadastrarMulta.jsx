@@ -12,7 +12,7 @@ render() {
 
                     <Container textAlign='justified' >
 
-                            <h2> Cadastro </h2>
+                            <h1 style={{fontSize:'3rem'}}> Cadastro </h1>
 
                             <Divider />
 
@@ -50,6 +50,7 @@ render() {
                                     
                                     />
                                     <Form.Input
+                                    required
                                         fluid
                                         label='Gravidade'
                                         width={8}
@@ -57,6 +58,7 @@ render() {
 
                                     />
                                     <Form.Input
+                                    required
                                         fluid
                                         label='Pontos'
                                         width={6}

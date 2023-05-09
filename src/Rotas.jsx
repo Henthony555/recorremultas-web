@@ -27,22 +27,26 @@ function Rotas() {
                 <Route path="/" element={ <Home/> } />
                 <Route path="login" element={ <Login/> } />
                 <Route path="cadastro" element={ <Cadastro/> } />
+                <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
+
                 <Route path="usuario" element={ <Usuario/> } />
+                <Route path="DadosCadastrados" element={ <DadosCadastrados/>} />
+                <Route path="AlterarSenha" element={ <AlterarSenha/>} />
+                <Route path="HistoricoPeticao" element={ <HistoricoPeticao/>} />
+                
                 <Route path="criarPeticao" element={ <CriarPeticao/> } />
                 <Route path="formularioPeticao" element={ <FormularioPeticao/> } />
-                <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
+              
                 <Route path="agencias" element={ <Agencias/> } />
-
+                
                 <Route path="admagencias" element={ <ADMagencias/> } />
-                <Route path="estatisticas" element={ <Estatisticas/>} /> 
                 <Route path="admGerenciarPeticao" element={ <GerenciarPeticao/>} /> 
                 <Route path="admMultas" element={ <Multas/>} />   
                 <Route path="admPeticao" element={ <Peticao/>} />
                 <Route path="admRegistros" element={ <Registros/>} />
                 <Route path="admCadastroMulta" element={ <CadastrarMulta/>} />
-                <Route path="DadosCadastrados" element={ <DadosCadastrados/>} />
-                <Route path="AlterarSenha" element={ <AlterarSenha/>} />
-                <Route path="HistoricoPeticao" element={ <HistoricoPeticao/>} />
+
+                
                 
             </Routes>
         </>

@@ -15,7 +15,7 @@ class Login extends React.Component {
                         <Form size='large' style={{ marginTop: '2%' }}>
                             <Segment color='yellow' stacked>
                                 <Form.Input
-                                    fluid 
+                                    fluid
                                     icon='user'
                                     iconPosition='left'
                                     placeholder='E-mail'
@@ -28,9 +28,11 @@ class Login extends React.Component {
                                     type='password'
                                 />
 
-                                <Button color='yellow' fluid size='large'>
-                                    <Link to={'/'}>Entrar</Link>
-                                </Button>
+                                <Link to={'/'}>
+                                    <Button color='yellow' fluid size='large'>
+                                        Entrar
+                                    </Button>
+                                </Link>
 
                                 <Divider horizontal>OU</Divider>
 
@@ -39,7 +41,7 @@ class Login extends React.Component {
                                 </Button>
 
                                 <Container as='h4' style={{ marginTop: '3%' }}>
-                                <Link to={'/esqueceuSenha'}>Esqueceu a senha?</Link>
+                                    <Link to={'/esqueceuSenha'}>Esqueceu a senha?</Link>
                                 </Container>
                             </Segment>
                         </Form>

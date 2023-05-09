@@ -19,8 +19,8 @@ class MenuSistema extends React.Component {
                         <Menu.Item>
                             <Image src={logo} as={Link} to='/' size='small' />
                         </Menu.Item>
-                        
-                        {/*
+
+                      
                         <Menu.Item
                             name='criarPeticao'
                             active={this.state.activeItem === 'criarPeticao'}
@@ -28,7 +28,7 @@ class MenuSistema extends React.Component {
                             as={Link}
                             to='/criarPeticao'
                         />
-                        
+
                         <Menu.Item
                             name='meus dados'
                             active={this.state.activeItem === 'meus dados'}
@@ -37,20 +37,31 @@ class MenuSistema extends React.Component {
                             to='/usuario'
                         />
 
+                        <Menu.Item
+                            name='Agencias'
+                            active={this.state.activeItem === 'meus dados'}
+                            onClick={this.handleItemClick}
+                            as={Link}
+                            to='/agencias'
+                        />
+
                         <Menu.Item position="right" >
-                            <Button
-                                icon
-                                labelPosition='right'
-                                color='orange'
-                                floated='right'
+                            <Link to={'/login'}>
+                                <Button
+                                    icon
+                                    labelPosition='right'
+                                    color='orange'
+                                    floated='right'
                                 //onClick={}
-                            >
-                                <Icon name='sign-out' />
-                                Sair
-                            </Button>
+                                >
+                                    <Icon name='sign-out' />
+                                    Sair
+                                </Button>
+                            </Link>
                         </Menu.Item>
-                        */}
-                        
+                       
+
+{/*
                         <Menu.Item position="right" >
                             <Link to={'/login'}>
                                 <Button
@@ -58,20 +69,20 @@ class MenuSistema extends React.Component {
                                     labelPosition='left'
                                     color='orange'
                                     floated='right'
-                                    //onClick={}
+                                //onClick={}
                                 >
                                     <Icon name='file text' />
                                     Criar Petição
                                 </Button>
                             </Link>
                         </Menu.Item>
-                         {/**/}
-                        
-                        
+                        */}
 
-                       
-                        
-                        
+
+
+
+
+
 
                     </Menu>
                 </Segment>

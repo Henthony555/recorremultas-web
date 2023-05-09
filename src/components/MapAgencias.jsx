@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -16,7 +16,7 @@ import "../assets/css/MapAgencias.css";
 
 export default function MapAgencias() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "",
+    googleMapsApiKey: "AIzaSyD78Roc3gdBU6AH8Rp1bBKdo3f472oBygs",
     libraries: ["places"],
   });
 
