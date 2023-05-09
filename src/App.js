@@ -1,6 +1,7 @@
-import Rotas from './Rotas';
+import {Rotas} from './Rotas';
 import MenuSistema from './components/MenuSistema';
 import Footer from './components/Footer';
+
 
 function App() {
 
