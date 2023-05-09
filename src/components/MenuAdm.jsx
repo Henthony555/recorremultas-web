@@ -42,38 +42,7 @@ class MenuAdm extends React.Component {
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/usuario'
-                        />
-                        {/*
-                        <Menu.Item position="right" >
-                            <Button
-                                icon
-                                labelPosition='right'
-                                color='orange'
-                                floated='right'
-                                //onClick={}
-                            >
-                                <Icon name='sign-out' />
-                                Sair
-                            </Button>
-                        </Menu.Item>
-                        
-
-                        
-                        <Menu.Item position="right" >
-                            <Link to={'/login'}>
-                                <Button
-                                    icon
-                                    labelPosition='left'
-                                    color='orange'
-                                    floated='right'
-                                    //onClick={}
-                                >
-                                    <Icon name='file text' />
-                                    Criar Petição
-                                </Button>
-                            </Link>
-                        </Menu.Item>
-                        */}
+                        />                     
 
                     </Menu>
                 </Segment>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Image, Header, Icon, Rating, Segment, Table, Card, Container } from 'semantic-ui-react';
+import { Grid, Image, Header, Icon, Rating, Segment, Table, Container } from 'semantic-ui-react';
 import bacgrounds from '../../assets/img/telahome.png'
 
 class Home extends React.Component {
@@ -54,7 +54,7 @@ class Home extends React.Component {
                  <Grid.Column style={{ maxWidth: 850 }}>
                         <Segment.Group stacked>
                             <Segment color="Red">
-                                <Header as='h3' color="red" icon>   
+                                <Header as='h2' color="red" icon>   
                                     <Icon name='thumbs up outline' /> Avalie nosso site </Header>
                                 </Segment>
                         </Segment.Group>
@@ -70,12 +70,20 @@ class Home extends React.Component {
                     <Table.Body>
                     <Table.Row>
                         <Table.Cell textAlign="center">
-                        <Rating icon='star' defaultRating={5} maxRating={5}/>
+                        <Rating icon="star" defaultRating={5} maxRating={5}/>
                         </Table.Cell>
                         <Table.Cell textAlign="center">                   
-                              <Card>                   
-                                 <input type='text' placeholder='Feedback' maxLength={100} Fluid />
-                            </Card>
+                            <div class="ui form success">
+                                <div class="field">
+                                    <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Deixe seu Comentário</font></font></label>
+                                    <input type="email" placeholder="DSeixe sua sugestão ou Comentário"></input>
+                                </div>
+                                <div class="ui success message">
+                                    <div class="header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comentário salvo</font></font></div>
+                                    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Obrigada pela Avaliação.</font></font></p>
+                                </div>
+                                <div class="ui submit button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar</font></font></div>
+                                </div>
                             
                         </Table.Cell>
                       

@@ -10,6 +10,7 @@ import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
 import Home from './views/home/Home';
 import Login from './views/login/Login';
 import Usuario from './views/usuario/Usuario';
+import Estatisticas from './views/estatisticas/Estatisticas';
 
 function Rotas() {
     return (
@@ -24,7 +25,7 @@ function Rotas() {
                 <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
                 <Route path="agencias" element={ <Agencias/> } />
                 <Route path="admagencias" element={ <ADMagencias/> } />
-                               
+                <Route path="estatisticas" element={ <Estatisticas/>} />                               
             </Routes>
         </>
     )
