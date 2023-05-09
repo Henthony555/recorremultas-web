@@ -75,12 +75,10 @@ class Home extends React.Component {
                         <Table.Cell textAlign="center">                   
                             <div class="ui form success">
                                 <div class="field">
-                                    <label><font style={{verticalAlign: 'inherit'}}><font style={{verticalAlign: 'inherit'}}>Deixe seu Comentário</font></font></label>
-                                    <input type="email" placeholder="DSeixe sua sugestão ou Comentário"></input>
+                                    <input type="text" placeholder="Deixe sua sugestão ou Comentário"></input>
                                 </div>
                                 <div class="ui success message">
                                     <div class="header"><font style={{verticalAlign: 'inherit'}}><font style={{verticalAlign: 'inherit'}}>Comentário salvo</font></font></div>
-                                    <p><font style={{verticalAlign: 'inherit'}}><font style={{verticalAlign: 'inherit'}}>Obrigada pela Avaliação.</font></font></p>
                                 </div>
                                 <div class="ui submit button"><font style={{verticalAlign: 'inherit'}}><font style={{verticalAlign: 'inherit'}}>Enviar</font></font></div>
                                 </div>

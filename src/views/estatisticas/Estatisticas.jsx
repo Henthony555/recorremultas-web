@@ -1,12 +1,12 @@
 import React from "react";
-import { Grid } from 'semantic-ui-react';
+import { } from 'semantic-ui-react';
 
 class estatisticas extends React.Component {
 
     render() {
         return (
             <>
-             <Grid textAlign='center' as='h2'  >
+            <container>
                  <div class="ui inverted segment">       
                                 <div class="ui red inverted statistic">
                                     <div class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
@@ -26,8 +26,8 @@ class estatisticas extends React.Component {
                                     </font></font></div>
                                 </div>                                                             
                             
-                     </div>
-             </Grid>                
+                     </div>    
+            </container>      
           </>
        )
     }
