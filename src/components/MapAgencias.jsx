@@ -16,7 +16,7 @@ import "../assets/css/MapAgencias.css";
 
 export default function MapAgencias() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyD78Roc3gdBU6AH8Rp1bBKdo3f472oBygs",
+    googleMapsApiKey: "",
     libraries: ["places"],
   });
 
