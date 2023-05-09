@@ -29,7 +29,7 @@ class Login extends React.Component {
                                 />
 
                                 <Button color='yellow' fluid size='large'>
-                                    Entrar
+                                    <Link to={'/'}>Entrar</Link>
                                 </Button>
 
                                 <Divider horizontal>OU</Divider>

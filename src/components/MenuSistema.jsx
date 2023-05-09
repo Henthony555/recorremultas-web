@@ -30,7 +30,7 @@ class MenuSistema extends React.Component {
                         />
                         */}
                         
-                        {/**/}
+                        {/*
                         <Menu.Item
                             name='criarPeticao'
                             active={this.state.activeItem === 'criarPeticao'}
@@ -45,7 +45,7 @@ class MenuSistema extends React.Component {
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/usuario'
-                        />
+                        />*/}
                         <Menu.Item position="right" >
                             <Link to={'/login'}>
                                 <Button

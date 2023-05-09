@@ -11,6 +11,11 @@ import Home from './views/home/Home';
 import Login from './views/login/Login';
 import Usuario from './views/usuario/Usuario';
 import Estatisticas from './views/estatisticas/Estatisticas';
+import GerenciarPeticao from './views/adm/GerenciarPeticao';
+import Multas from './views/adm/Multas';
+import Peticao from './views/adm/Peticao';
+import Registros from './views/adm/Registros';
+import CadastrarMulta from './views/adm/CadastrarMulta';
 
 function Rotas() {
     return (
@@ -24,8 +29,15 @@ function Rotas() {
                 <Route path="formularioPeticao" element={ <FormularioPeticao/> } />
                 <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
                 <Route path="agencias" element={ <Agencias/> } />
+
                 <Route path="admagencias" element={ <ADMagencias/> } />
-                <Route path="estatisticas" element={ <Estatisticas/>} />                               
+                <Route path="estatisticas" element={ <Estatisticas/>} /> 
+                <Route path="admGerenciarPeticao" element={ <GerenciarPeticao/>} /> 
+                <Route path="admMultas" element={ <Multas/>} />   
+                <Route path="admPeticao" element={ <Peticao/>} />
+                <Route path="admRegistros" element={ <Registros/>} />
+                <Route path="admCadastroMulta" element={ <CadastrarMulta/>} />
+
             </Routes>
         </>
     )
