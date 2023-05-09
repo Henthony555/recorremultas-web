@@ -19,16 +19,6 @@ class MenuSistema extends React.Component {
                         <Menu.Item>
                             <Image src={logo} as={Link} to='/' size='small' />
                         </Menu.Item>
-
-                        {/*
-                        <Menu.Item
-                            name='Home'
-                            active={this.state.activeItem === 'home'}
-                            onClick={this.handleItemClick}
-                            as={Link}
-                            to='/'
-                        />
-                        */}
                         
                         {/*
                         <Menu.Item
@@ -45,7 +35,22 @@ class MenuSistema extends React.Component {
                             onClick={this.handleItemClick}
                             as={Link}
                             to='/usuario'
-                        />*/}
+                        />
+
+                        <Menu.Item position="right" >
+                            <Button
+                                icon
+                                labelPosition='right'
+                                color='orange'
+                                floated='right'
+                                //onClick={}
+                            >
+                                <Icon name='sign-out' />
+                                Sair
+                            </Button>
+                        </Menu.Item>
+                        */}
+                        
                         <Menu.Item position="right" >
                             <Link to={'/login'}>
                                 <Button
@@ -60,24 +65,13 @@ class MenuSistema extends React.Component {
                                 </Button>
                             </Link>
                         </Menu.Item>
-                         {/*
-                        <Menu.Item position="right" >
-                            <Button
-                                icon
-                                labelPosition='right'
-                                color='orange'
-                                floated='right'
-                                //onClick={}
-                            >
-                                <Icon name='sign-out' />
-                                Sair
-                            </Button>
-                        </Menu.Item>
+                         {/**/}
+                        
                         
 
                        
                         
-                        */}
+                        
 
                     </Menu>
                 </Segment>

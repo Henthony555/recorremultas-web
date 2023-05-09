@@ -1,4 +1,5 @@
-import {Rotas} from './Rotas';
+import React from 'react';
+import Rotas from './Rotas';
 import MenuSistema from './components/MenuSistema';
 import Footer from './components/Footer';
 
