@@ -7,6 +7,7 @@ class MenuSistema extends React.Component {
 
     state = {
         activeItem: 'home',
+        estaLogado: true
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -20,7 +21,8 @@ class MenuSistema extends React.Component {
                             <Image src={logo} as={Link} to='/' size='small' />
                         </Menu.Item>
 
-                      
+                      {this.state.estaLogado &&
+                      <>
                         <Menu.Item
                             name='criarPeticao'
                             active={this.state.activeItem === 'criarPeticao'}
@@ -44,7 +46,8 @@ class MenuSistema extends React.Component {
                             as={Link}
                             to='/agencias'
                         />
-
+                    </>
+                    }
                         <Menu.Item position="right" >
                             <Link to={'/login'}>
                                 <Button
