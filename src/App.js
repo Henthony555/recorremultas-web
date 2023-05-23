@@ -1,7 +1,7 @@
 import React from 'react';
 import Rotas from './Rotas';
-import MenuSistema from './components/MenuAdm';
 import Footer from './components/Footer';
+import MenuSistema from './components/MenuSistema';
 
 
 function App() {

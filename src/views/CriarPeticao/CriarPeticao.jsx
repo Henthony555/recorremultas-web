@@ -4,7 +4,12 @@ import CardPeticao from "../componentes/card";
 class CriarPeticao extends React.Component {
 
 
+    state = { activeItem: '10' }
+
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
     render() {
+        const { activeItem } = this.state
         return (
             
             <>
@@ -24,7 +29,7 @@ class CriarPeticao extends React.Component {
                             
 
                             <CardPeticao/>
-                            
+
                           
                         </Container>
                     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Container, Divider, Grid, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Button, Container, Divider, Grid, Icon } from 'semantic-ui-react';
 
 
 class GerenciarPeticao extends React.Component {

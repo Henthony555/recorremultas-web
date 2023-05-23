@@ -29,7 +29,11 @@ class Login extends React.Component {
                                 />
 
                                 <Link to={'/'}>
-                                    <Button color='yellow' fluid size='large'>
+                                    <Button
+                                    color='yellow'
+                                     fluid 
+                                     size='large'
+                                     >
                                         Entrar
                                     </Button>
                                 </Link>

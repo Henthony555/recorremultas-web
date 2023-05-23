@@ -1,24 +1,24 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
+import MenuAdm from "./components/MenuAdm";
 import CriarPeticao from './views/CriarPeticao/CriarPeticao';
 import FormularioPeticao from './views/CriarPeticao/formularioPeticao';
+import CadastrarMulta from './views/adm/CadastrarMulta';
+import GerenciarPeticao from './views/adm/GerenciarPeticao';
+import Multas from './views/adm/Multas';
+import Peticao from './views/adm/Peticao';
+import Registros from './views/adm/Registros';
 import ADMagencias from './views/adm/admAgencias';
 import Agencias from './views/agencias/Agencias';
 import Cadastro from './views/cadastro/Cadastro';
 import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
 import Home from './views/home/Home';
 import Login from './views/login/Login';
-import Usuario from './views/usuario/Usuario';
-import Estatisticas from './views/estatisticas/Estatisticas';
-import GerenciarPeticao from './views/adm/GerenciarPeticao';
-import Multas from './views/adm/Multas';
-import Peticao from './views/adm/Peticao';
-import Registros from './views/adm/Registros';
-import CadastrarMulta from './views/adm/CadastrarMulta';
-import DadosCadastrados from './views/usuario/DadosCadastrados';
 import AlterarSenha from './views/usuario/AlterarSenha';
+import DadosCadastrados from './views/usuario/DadosCadastrados';
 import HistoricoPeticao from './views/usuario/HistoricoPeticao';
+import Usuario from './views/usuario/Usuario';
 
 function Rotas() {
     return (
@@ -45,7 +45,6 @@ function Rotas() {
                 <Route path="admPeticao" element={ <Peticao/>} />
                 <Route path="admRegistros" element={ <Registros/>} />
                 <Route path="admCadastroMulta" element={ <CadastrarMulta/>} />
-
                 
                 
             </Routes>

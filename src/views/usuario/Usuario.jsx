@@ -1,77 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Container, Divider, Grid, Image, List, Icon, Form, } from 'semantic-ui-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Container, Divider, Grid, Icon, Image } from 'semantic-ui-react';
 import perfil from "../../assets/img/square-image.png";
 
 
-class Servico extends React.Component {
-
-
+class GerenciarPeticao extends React.Component {
     render() {
         return (
-            
+
             <>
-                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-                    <div style={{marginTop: '4%'}}>
-                        <Container textAlign="justified" >
-                       <h1> Meus Dados </h1>
-                            <Divider/>
-                        
-                            <div style={{marginTop:'5%'}}>
+                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle' >
+                    <div style={{ marginTop: '3%' }}>
+                        <Container textAlign="justified">
+                            <h1 style={{fontSize:'3rem'}}> Meus dados</h1>
+                            <Divider />
 
-    <List animated verticalAlign='middle'>
-        <table class="ui orange table">
-        <thead class="">
-            <tr class="">
-                <th class="">           <h2 class="ui header"> <Image src={perfil} size='massive' circular/> Usuario </h2> </th>
-                </tr>
-                </thead>
-                <tbody class="">
+                            <h2 class="ui header"> <Image src={perfil} size='massive' circular/> Usuario </h2>
 
-                 </tbody>
-                    </table>
-  
-  <br></br><br></br>
-
-    <List.Item>
-    <Button as='a' basic tabIndex='0'
-     title='Dados Cadastrados'>
-          <Link to={'/dadosCadastrados'}> Dados cadastrados </Link>
-      </Button>
-    </List.Item>
-                
-
-
-                    <List.Item>
-    <Button as='a' basic tabIndex='0'
-     title='Historico de Petições'>
-          <Link to={'/historicoPeticao'}> Histórico de Petições </Link>
-      </Button>
-    </List.Item>
+<br></br>
+                            <>
+                                <Link to={'/dadosCadastrados'}>
+                                    <Button inverted icon size='huge' color='orange' labelPosition='left' >
+                                        <Icon name='calendar check ' />  Dados Cadastrados
+                                    </Button>
+                                </Link>
+                                <br /> <br />
+                                <Link to={'/historicoPeticao'}>
+                                    <Button inverted icon size='huge' color='orange' labelPosition='left' >
+                                        <Icon name='file' /> Historico Cadastrados
+                                    </Button>
+                                </Link>
+                                <br /> <br />
+                                <Link to={'/alterarSenha'}>
+                                    <Button inverted icon size='huge' color='orange' labelPosition='left' >
+                                        <Icon name='save' /> Alterar Senha
+                                    </Button>
+                                </Link>
+                                <br /> <br />
 
 
-                    <List.Item>
-    <Button as='a' basic tabIndex='0'
-     title='Alterar Senha'>
-          <Link to={'/alterarSenha'}> Alterar Senha </Link>
-      </Button>
-    </List.Item>
 
+                            </>
 
-                    </List>
-
-
- 
-                            </div>
                         </Container>
                     </div>
                 </Grid>
-                
-               
+
+
             </>
-            
+
         )
     }
 }
 
-export default Servico;
+
+export default GerenciarPeticao;
