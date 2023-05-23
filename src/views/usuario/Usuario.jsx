@@ -27,7 +27,7 @@ class GerenciarPeticao extends React.Component {
                                 <br /> <br />
                                 <Link to={'/historicoPeticao'}>
                                     <Button inverted icon size='huge' color='orange' labelPosition='left' >
-                                        <Icon name='file' /> Historico Cadastrados
+                                        <Icon name='file' /> Historico Petições
                                     </Button>
                                 </Link>
                                 <br /> <br />
