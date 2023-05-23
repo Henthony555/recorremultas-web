@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Grid } from 'semantic-ui-react';
 import MapAgencias from "../../components/MapAgencias";
 
-class ADMagencias extends React.Component {
+export default function ADMagencias() {
 
-    render() {
+   
         return (
             <>
                 <Grid textAlign='center' verticalAlign='middle' style={{ miniHeight: '90vh' }}>
@@ -52,7 +52,7 @@ class ADMagencias extends React.Component {
                 </Grid>
             </>
         )
-    }
-}
+    
+};
 
-export default ADMagencias;
+

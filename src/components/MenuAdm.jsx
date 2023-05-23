@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Icon, Image, Menu, Segment } from "semantic-ui-react";
 import logo from '../assets/img/logoGrande.png';
 
-function MenuSistema ()  {
+export default function MenuSistema ()  {
    
     const [activeItem,setActiveItem] = useState();
     const [estaLogado,setEstaLogado] = useState(true);
@@ -85,6 +85,4 @@ function MenuSistema ()  {
             </>
         )
     
-}
-
-export default MenuSistema;
+};

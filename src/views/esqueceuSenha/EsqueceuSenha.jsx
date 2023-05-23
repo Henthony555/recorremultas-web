@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Divider, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
 
-class EsqueceuSenha extends React.Component {
+export default function EsqueceuSenha(){
 
-    render() {
+
         return (
             <>
                 <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
@@ -56,7 +56,5 @@ class EsqueceuSenha extends React.Component {
                 </Grid >
             </>
         )
-    }
-}
-
-export default EsqueceuSenha;
+    
+};
