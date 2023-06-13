@@ -13,7 +13,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import "../assets/css/MapAgencias.css";
-import { MAP_KEY } from "../util/Map_key"
+import { MAP_KEY } from "../util/MAP_KEY";
 
 export default function MapAgencias() {
   const { isLoaded } = useLoadScript({
