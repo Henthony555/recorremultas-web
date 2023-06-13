@@ -1,10 +1,20 @@
 import React from "react";
-import logo from '../../assets/img/logo.png';
 import InputMask from 'react-input-mask';
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Image, Segment, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
+import logo from '../../assets/img/logo.png';
 
 class Cadastro extends React.Component {
+
+    state = {
+
+        nomeCompleto: null,
+        cpf: null,
+        email: null,
+        dataNascimento: null,
+        senha: null
+    }
+ 
 
     render() {
         return (
@@ -23,6 +33,9 @@ class Cadastro extends React.Component {
                                             icon='user circle'
                                             iconPosition='left'
                                             placeholder='Nome do usuário'
+                                            value={this.state.nomeCompleto}
+		                                	onChange={e => this.setState({nomeCompleto: e.target.value})}
+
                                         />
 
                                         <Form.Input
@@ -34,6 +47,8 @@ class Cadastro extends React.Component {
                                             <InputMask
                                                 placeholder='CPF'
                                                 mask="999.999.999-99"
+                                                value={this.state.cpf}
+		                                	    onChange={e => this.setState({cpf: e.target.value})}
                                             />
                                         </Form.Input>
 
@@ -42,7 +57,24 @@ class Cadastro extends React.Component {
                                             icon='envelope'
                                             iconPosition='left'
                                             placeholder='E-mail'
+                                            
                                         />
+                                        <Form.Input
+									        fluid
+                                            icon
+                                            iconPosition='left'
+									        value={this.state.email}
+		                                	onChange={e => this.setState({email: e.target.value})}
+								            >
+                                    <Icon name='calendar alternate' />
+									<InputMask 
+										mask="99/99/9999" 
+										maskChar={null}
+										placeholder="Data de Nascimento"
+                                        value={this.state.dataNascimento}
+		                                	    onChange={e => this.setState({dataNascimento: e.target.value})}
+									/> 
+								</Form.Input>
 
                                         <Form.Input
                                             fluid
@@ -50,6 +82,8 @@ class Cadastro extends React.Component {
                                             iconPosition='left'
                                             placeholder='Senha'
                                             type='password'
+                                            value={this.state.senha}
+		                                	    onChange={e => this.setState({senha: e.target.value})}
                                         />
 
                                         <Form.Input
@@ -58,9 +92,11 @@ class Cadastro extends React.Component {
                                             iconPosition='left'
                                             placeholder='Confirmar senha'
                                             type='password'
+                                            value={this.state.senha}
+		                                	    onChange={e => this.setState({senha: e.target.value})}
                                         />
 
-                                        <Button color='yellow' fluid size='large'>
+                                        <Button color='yellow' fluid size='large' onClick={this.salvar}>
                                             Registrar
                                         </Button>
 
