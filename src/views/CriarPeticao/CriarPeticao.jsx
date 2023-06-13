@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Divider, Grid, Icon } from 'semantic-ui-react';
 import CardPeticao from "../componentes/card";
+
 class CriarPeticao extends React.Component {
 
 
