@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactPDF from '@react-pdf/renderer';
-import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 
-// Create styles
 const styles = StyleSheet.create({
     page: {
         paddingTop: 25,
@@ -10,20 +9,25 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
     },
     Titulo: {
-        fontSize: 18
+        fontSize: 12,
+        fontWeight: 900,
+        marginBottom: 6
     },
     SubTitlo: {
-        fontSize: 14,
-        margin: 12,
+        fontWeight: 900,
+        fontSize: 12,
+        margin: 6,
     },
     Texto: {
-        margin: 12,
-        fontSize: 12,
+        margin: 6,
+        fontSize: 11,
         textAlign: 'justify'
+    },
+    centro: {
+        textAlign: 'center'
     }
 });
 
-// Create Document Component
 const PDF = () => (
     <Document>
         <Page size="A4" style={styles.page}>
@@ -45,7 +49,7 @@ const PDF = () => (
                 9.503, de 23 de setembro de 1997), interpor tempestivamente o presente:
             </Text>
 
-            <Text style={styles.SubTitlo}>RECURSO</Text>
+            <Text style={[styles.SubTitlo, styles.centro]}>RECURSO</Text>
 
             <Text style={styles.Texto}>
                 contra aplicação de penalidade por suposta infração de trânsito, pelos fundamentos de fato e de direito a seguir
@@ -68,11 +72,11 @@ const PDF = () => (
             <Text style={styles.SubTitlo}>II - DO DIREITO</Text>
 
             <Text style={styles.Texto}>
-                (razões pelas quais a penalidade deve ser cancelada)
+                Ocorre que a penalidade aplicada sequer tem razão de existir, visto que:
             </Text>
 
             <Text style={styles.Texto}>
-                Ocorre que a penalidade aplicada sequer tem razão de existir, visto que:
+                (razões pelas quais a penalidade deve ser cancelada)
             </Text>
 
             <Text style={styles.SubTitlo}>III - DOS PEDIDOS</Text>
@@ -91,15 +95,15 @@ const PDF = () => (
 
             <Text style={styles.Texto}>Pede deferimento.</Text>
 
-            <Text>
+            <Text style={[styles.SubTitlo, styles.centro]}>
                 ________________, ______ de _______ de ______
             </Text>
 
-            <Text>
+            <Text style={[styles.SubTitlo, styles.centro]}>
                 ________________________________
             </Text>
 
-            <Text>(Nome completo)</Text>
+            <Text style={[styles.SubTitlo, styles.centro]}>(Nome completo)</Text>
         </Page>
     </Document>
 );
@@ -107,8 +111,6 @@ const PDF = () => (
 function PdfPeticao() {
     return (
         <>
-            <PDF />
-
             <PDFDownloadLink document={<PDF />} fileName="Peticao.pdf">
                 {({ blob, url, loading, error }) =>
                     loading ? 'Gerando PDF...' : 'Baixar PDF'
