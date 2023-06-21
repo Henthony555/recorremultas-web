@@ -1,9 +1,59 @@
-import React from 'react';
-import { Button, Container, Divider, Form, Grid, Icon} from 'semantic-ui-react';
+import axios from "axios";
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
+import { ENDERECO_API } from '../../util/ENDERECO_API';
 
-class FormularioPeticao extends React.Component {
-    render() {
+export default function FormularioPeticao () {
+   
+    const [nomeCompleto, setNomeCompleto] = useState();
+    const [nacionalidade, setNacionalidade] = useState();
+    const [estadoCivil, setEstadoCivil] = useState();
+    const [profissao, setProfissao] = useState();
+    const [cnh, setCnh] = useState();
+    const [orgaoExpeditor, setOrgaoExpeditor] = useState();
+    const [cpf, setCpf] = useState();
+    const [telefone, setTelefone] = useState();
+    const [enderecoCompleto, setEnderecoCompleto] = useState();
+    const [marcaModelo, setMarcaModelo] = useState();
+    const [placa, setPlaca] = useState();
+    const [renavam, setRenavam] = useState();
+    const [chassi, setChassi] = useState();
+    const [dataMulta, setDataMulta] = useState();
+    const [orgaoEmissor, setOrgaoEmissor] = useState();
+    const [notificacao, setNotificacao] = useState();
+    const [justificativaCancelamento, setJustificativaCancelamento] = useState();
+    
+
+    function salvar() {
+
+        let peticaoRequest = {
+            nomeCompleto: nomeCompleto,
+            nacionalidade: nacionalidade,
+            estadoCivil: estadoCivil,
+            profissao: profissao,
+            cnh:cnh,
+            orgaoExpeditor:orgaoExpeditor,
+            cpf: cpf,
+            telefone: telefone,
+            enderecoCompleto: enderecoCompleto,
+            marcaModelo: marcaModelo,
+            placa: placa,
+            renavam: renavam,
+            chassi: chassi,
+            dataMulta: dataMulta,
+            orgaoEmissor: orgaoEmissor,
+            notificacao: notificacao,
+            justificativaCancelamento: justificativaCancelamento
+        }
+       
+        axios.post(ENDERECO_API + "api/peticao", peticaoRequest)
+        .then((response) => { console.log('Formulário cadastrado com sucesso.') })
+        .catch((error) => { console.log('Erro ao incluir o Fomulário.') })
+ 
+ }
+ 
+
         return (
             
             <>
@@ -130,6 +180,3 @@ class FormularioPeticao extends React.Component {
             
         )
     }
-}
-
-export default FormularioPeticao;

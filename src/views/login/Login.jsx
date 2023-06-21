@@ -1,11 +1,47 @@
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logoGrande.png';
-import { Button, Form, Grid, Image, Container, Segment, Divider, Icon } from 'semantic-ui-react'
 
 class Login extends React.Component {
 
     render() {
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
+            authDomain: "re-corre-multas.firebaseapp.com",
+            databaseURL: "https://re-corre-multas-default-rtdb.firebaseio.com",
+            projectId: "re-corre-multas",
+            storageBucket: "re-corre-multas.appspot.com",
+            messagingSenderId: "669467425665",
+            appId: "1:669467425665:web:ae9577ef0515b756c0c680",
+            measurementId: "G-EHR5PLXT9R"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+
+        const auth = getAuth();
+
+        function logar(){
+        signInWithEmailAndPassword(auth, this.state.email, this.state.senha)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            alert("Usuário Logado");
+            // ...
+          })
+          .catch((error) => {
+            alert("Usuário ou senha incorretos");
+          });
+
+        }
+
         return (
             <>
                 <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }} >
@@ -33,6 +69,7 @@ class Login extends React.Component {
                                     color='yellow'
                                      fluid 
                                      size='large'
+                                     onClick={()=>logar()}
                                      >
                                         Entrar
                                     </Button>
