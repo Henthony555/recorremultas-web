@@ -1,14 +1,16 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logoGrande.png';
+import { notifyError, notifySuccess } from '../../util/Util';
 
-class Login extends React.Component {
+export default function Login(){
 
-    render() {
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
 
         const firebaseConfig = {
             apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
@@ -24,22 +26,21 @@ class Login extends React.Component {
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-
-
         const auth = getAuth();
 
         function logar(){
-        signInWithEmailAndPassword(auth, this.state.email, this.state.senha)
+            
+        signInWithEmailAndPassword(auth, email, senha)
           .then((userCredential) => {
-            // Signed in
+            // Login bem-sucedido
             const user = userCredential.user;
-            alert("Usuário Logado");
+            notifySuccess("Usuário Logado");
             // ...
           })
           .catch((error) => {
-            alert("Usuário ou senha incorretos");
+            //Ocorreu um erro no login
+            notifyError("Usuário ou senha incorretos");
           });
-
         }
 
         return (
@@ -55,6 +56,8 @@ class Login extends React.Component {
                                     icon='user'
                                     iconPosition='left'
                                     placeholder='E-mail'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
@@ -62,6 +65,8 @@ class Login extends React.Component {
                                     iconPosition='left'
                                     placeholder='Senha'
                                     type='password'
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
                                 />
 
                                 <Link to={'/'}>
@@ -70,6 +75,7 @@ class Login extends React.Component {
                                      fluid 
                                      size='large'
                                      onClick={()=>logar()}
+                                     
                                      >
                                         Entrar
                                     </Button>
@@ -94,6 +100,5 @@ class Login extends React.Component {
             </>
         )
     }
-}
 
-export default Login;
+
