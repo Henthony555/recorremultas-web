@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPDF from '@react-pdf/renderer';
-import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
     page: {
@@ -111,6 +111,10 @@ const PDF = () => (
 function PdfPeticao() {
     return (
         <>
+            <PDFViewer>
+                <PDF />
+            </PDFViewer>
+            
             <PDFDownloadLink document={<PDF />} fileName="Peticao.pdf">
                 {({ blob, url, loading, error }) =>
                     loading ? 'Gerando PDF...' : 'Baixar PDF'
