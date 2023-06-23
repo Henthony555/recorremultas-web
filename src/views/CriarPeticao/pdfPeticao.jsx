@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactPDF from '@react-pdf/renderer';
 import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { Button, Form, Grid, Icon, Container, Segment } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 const styles = StyleSheet.create({
     page: {
@@ -111,15 +113,65 @@ const PDF = () => (
 function PdfPeticao() {
     return (
         <>
-            <PDFViewer>
-                <PDF />
-            </PDFViewer>
-            
-            <PDFDownloadLink document={<PDF />} fileName="Peticao.pdf">
-                {({ blob, url, loading, error }) =>
-                    loading ? 'Gerando PDF...' : 'Baixar PDF'
-                }
-            </PDFDownloadLink>
+            <Grid textAlign='center' style={{ minHeight: '90vh', width: "100%" }}>
+
+                <Grid.Row style={{ width: "100%", minHeight: '80vh' }}>
+                    <PDFViewer style={{ width: '80%', height: '100vh' }}>
+                        <PDF />
+                    </PDFViewer>
+                </Grid.Row>
+
+                <Grid style={{width: '60%'}}>
+                    <Grid.Column floated='left' width={5}>
+
+                        <Button
+                            type="button"
+                            inverted
+                            circular
+                            as={Link}
+                            to='/formularioPeticao'
+                            icon
+                            labelPosition='left'
+                            color='blue'
+                        >
+                            <Icon name='cancel' />
+                            Cancelar
+                        </Button>
+
+                    </Grid.Column>
+
+                    <Grid.Column floated='right' width={5}>
+
+                        <PDFDownloadLink document={<PDF />} fileName="Peticao.pdf">
+                            {({ loading }) => (loading ?
+                                <Button
+                                    inverted
+                                    circular
+                                    icon
+                                    labelPosition='left'
+                                    color='red'
+                                >
+                                    <Icon name='file pdf' />
+                                    Baixando...
+                                </Button> :
+                                <Button
+                                    inverted
+                                    circular
+                                    icon
+                                    labelPosition='right'
+                                    color='red'
+                                >
+                                    <Icon name='file pdf' />
+                                    Baixar PDF
+                                </Button>)}
+                        </PDFDownloadLink>
+
+                    </Grid.Column>
+                </Grid>
+            </Grid>
+
+
+
         </>
     );
 }

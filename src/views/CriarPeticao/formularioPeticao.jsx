@@ -157,15 +157,15 @@ export default function FormularioPeticao () {
                                     animated
                                     inverted
                                     circular
+                                    as={Link}
                                     icon
+                                    to="/pdf"
                                     labelPosition='left'
                                     color='orange'
                                     floated='right'
                                 >
                                     <Icon name='file alternate' />
-                                    <Link to={'/'}>
                                     Gerar
-                                    </Link>
                                 </Button>
 
                             </Form>
