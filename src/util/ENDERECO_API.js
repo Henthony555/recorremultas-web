@@ -1,1 +1,1 @@
-export const ENDERECO_API ='http://localhost:5438/'
+export const ENDERECO_API ='http://localhost:8082/'

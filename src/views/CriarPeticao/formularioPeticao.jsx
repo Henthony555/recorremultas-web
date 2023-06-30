@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
+import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import { ENDERECO_API } from '../../util/ENDERECO_API';
 
-export default function FormularioPeticao () {
-   
+export default function FormularioPeticao() {
+
     const [nomeCompleto, setNomeCompleto] = useState();
     const [nacionalidade, setNacionalidade] = useState();
     const [estadoCivil, setEstadoCivil] = useState();
@@ -23,7 +25,7 @@ export default function FormularioPeticao () {
     const [orgaoEmissor, setOrgaoEmissor] = useState();
     const [notificacao, setNotificacao] = useState();
     const [justificativaCancelamento, setJustificativaCancelamento] = useState();
-    
+
 
     function salvar() {
 
@@ -32,8 +34,8 @@ export default function FormularioPeticao () {
             nacionalidade: nacionalidade,
             estadoCivil: estadoCivil,
             profissao: profissao,
-            cnh:cnh,
-            orgaoExpeditor:orgaoExpeditor,
+            cnh: cnh,
+            orgaoExpeditor: orgaoExpeditor,
             cpf: cpf,
             telefone: telefone,
             enderecoCompleto: enderecoCompleto,
@@ -46,137 +48,118 @@ export default function FormularioPeticao () {
             notificacao: notificacao,
             justificativaCancelamento: justificativaCancelamento
         }
-       
+
         axios.post(ENDERECO_API + "api/peticao", peticaoRequest)
-        .then((response) => { console.log('Formulário cadastrado com sucesso.') })
-        .catch((error) => { console.log('Erro ao incluir o Fomulário.') })
- 
- }
- 
+            .then((response) => { console.log('Formulário cadastrado com sucesso.') })
+            .catch((error) => { console.log('Erro ao incluir o Fomulário.') })
 
-        return (
-            
-            <>
-                <Grid textAlign='center' style={{ miniHeight: '90vh' }} verticalAlign='middle' >
-                    <div style={{marginTop: '3%'}}>
-                        <Container textAlign="justified">
-                            <h1> Dados Petição</h1>
-                            <Divider/>
-                        
-                            <h4 >Preencha o formulário de acordo com seus dados</h4>
-
-                            <h3 textAlign='center'> EXCELENTÍSSIMO(A) SENHOR(A) PRESIDENTE(A) DA JARI - JUNTA ADMINISTRATIVA DE RECURSOS DE INFRAÇÕES,</h3><br/>
-                            {/* */}
-                            <Form textAlign="justified">
-                                <Form.Group   >   
-                                    <Form.Input required size='small' placeholder = 'Nome completo'width={4}/>
-                                    <p>, nacionalidade:</p>
-                                    <Form.Input required size='small' placeholder= 'Nacionalidade'/>
-                                    <Form.Input required size='small' placeholder= 'Estado Civil'/>
-                                    <p>, profissão</p>
-                                    <Form.Input required size='small' placeholder= 'Profissão' />,
-                                </Form.Group>
-
-                                <Form.Group>   
-                                    <p> Carteira Nacional de Habilitação (CNH) n°</p>
-                                    <Form.Input required size='small' placeholder= '(CNH)'/>
-                                    <p>, expedida por</p>
-                                    <Form.Input required size='small' placeholder= 'Órgão expedidor'/>
-                                    <p>, CPF n°</p>
-                                    <Form.Input required size='small' placeholder= 'CPF' width={3}/>,
-                                </Form.Group>
-
-                                <Form.Group> 
-                                    <p> telefone n°</p>
-                                    <Form.Input required size='small' placeholder= 'Telefone'/>
-                                    <p>, reside em:</p>
-                                    <Form.Input required size='small' placeholder= 'Endereço completo' width={'10'}/>,
-                                </Form.Group>
-                                
-                                <Form.Group> 
-                                    <p> proprietário do veículo modelo</p>
-                                    <Form.Input required size='small' placeholder= 'Marca e modelo do veículo' width={'5'}/>
-                                    <p>, placa</p>
-                                    <Form.Input required size='small' placeholder= 'Placa'/>
-                                    <p>RENAVAM n°</p>
-                                    <Form.Input required size='small' placeholder= 'Número do RENAVAM'/>,
-                                </Form.Group>
-                                
-                                <Form.Group> 
-                                    <p>chassi n°</p>
-                                    <Form.Input required size='small' placeholder= 'Chassi do veículo'/>
-                                    <p>, venho, com fulcro no Código de Trânsito Brasileiro (Lei Federal n.
-                                    9.503, de 23 de setembro de 1997), interpor tempestivamente o presente:</p>
-                                </Form.Group>
-                                
-                                <h3 style={{textAlign:'center'}}>RECURSO</h3>
-
-                                <p>contra aplicação de penalidade por suposta infração de trânsito, pelos fundamentos de fato e de direito a seguir expostos.</p>
-                            
-                                <h3>I - DOS FATOS</h3>
-                                <Form.Group> 
-                                    <p>Na data de </p>
-                                    <Form.Input required size='small' placeholder= 'Data da multa' width={'2'}/>
-                                    <p>, fui notificado pelo órgão:</p>
-                                    <Form.Input required size='small' placeholder= 'Orgão que emitiu a notificação'/>
-                                    <p>, através da Notificação de imposição de Penalidade n°</p>
-                                    <Form.Input required size='small' placeholder= 'Número da notificação'/>,
-                                </Form.Group>
-                                <Form.Group> 
-                                    <p> da aplicação da penalidade de multa no Valor de R$</p>
-                                    <Form.Input required size='small' placeholder= 'Valor da multa' width={'2'}/>
-                                    <p>reais, além da perda de</p>
-                                    <Form.Input required size='small' placeholder= 'Número de pontos descontados na Carteira'/>
-                                    <p>, pontos na Carteira Nacional de Habilitação, </p>
-                                </Form.Group>
-                                <Form.Group> 
-                                    <p> pelo suposto cometimento da seguinte infração, prevista na legislação brasileira:</p>
-                                    <Form.Input required size='small' placeholder= 'Suposta infração' />
-                                </Form.Group>
-                                
-                                <h3>II - DO DIREITO</h3>
-                            
-                                <p>Ocorre que a penalidade aplicada sequer tem razão de existir, visto que:</p>
-                        
-                                <Form.TextArea required  placeholder= 'Razões pelas quais a penalidade deve ser cancelada' width={15}/>
-
-                                <h3>III - DOS PEDIDOS</h3>
-
-                                <p>Diante do exposto, requer o acolhimento do presente recurso e, consequentemente, o cancelamento da multa de trânsito imposta.</p>
-                                <p>Igualmente, solicito sejam anuladas quaisquer penalidades eventualmente aplicadas em decorrência da suposta infração, bem como excluídos os registros da respectiva falta no prontuário referente à minha Carteira Nacional de Habilitação (CNH).</p>
-
-                                <p>Pede deferimento.</p>
-                                <br/>
-                                <br/>
-                                <p style={{textAlign:'center'}}>____________________, ______ de _______ de ______</p>
-                                <br/>
-                                <p style={{textAlign:'center'}}>________________________________</p>
-                                <br/>
-                                <br/>
-                                <Button
-                                    animated
-                                    inverted
-                                    circular
-                                    as={Link}
-                                    icon
-                                    to="/pdf"
-                                    labelPosition='left'
-                                    color='orange'
-                                    floated='right'
-                                >
-                                    <Icon name='file alternate' />
-                                    Gerar
-                                </Button>
-
-                            </Form>
-                         
-              
-                        </Container>
-                    </div>
-                </Grid>
-                
-               
-            </>
-            
-        )
     }
+
+    function formatarData(dataParam) {
+
+		if (dataParam == null || dataParam == '') {
+			return ''
+		}
+
+		let dia = dataParam.substr(8, 2);
+		let mes = dataParam.substr(5, 2);
+		let ano = dataParam.substr(0, 4);
+		let dataFormatada = dia + '/' + mes + '/' + ano;
+
+		return dataFormatada
+	};
+
+
+    return (
+
+        <>
+            <Grid textAlign='center' style={{ miniHeight: '90vh' }} verticalAlign='middle' >
+                <div style={{ marginTop: '3%' }}>
+                    <Container textAlign="justified">
+                        <h1> Preencha o formulário de acordo com seus dados</h1>
+                        <Divider />
+
+                        <Form>
+                            <Form.Group widths="equal">
+                                <Form.Input required  label='Nome completo' value={nomeCompleto} onChange={e => setNomeCompleto(e.target.value)} />
+                                <Form.Input required  label='Nacionalidade' value={nacionalidade} onChange={e => setNacionalidade(e.target.value)} />
+                                <Form.Input required  label='Estado Civil' value={estadoCivil} onChange={e => setEstadoCivil(e.target.value)} />
+                                <Form.Input required  label='Profissão' value={profissao} onChange={e => setProfissao(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group widths="equal">
+                                <Form.Input required  label='CNH' value={cnh} onChange={e => setCnh(e.target.value)} />
+                                <Form.Input required  label='Órgão expedidor' value={orgaoExpeditor} onChange={e => setOrgaoExpeditor(e.target.value)} />
+                                <Form.Input required  label='CPF'>
+                                <InputMask
+										mask="999.999.999-99"
+										value={cpf}
+										onChange={e => setCpf(e.target.value)}
+									/>
+                                </Form.Input>
+                                <Form.Input required  label='Telefone'>
+                                <InputMask
+										mask="(99) 9999.9999"
+										value={telefone}
+										onChange={e => setTelefone(e.target.value)}
+									/>
+                                </Form.Input>
+                            </Form.Group>
+
+                            <Form.Group widths="equal">
+                                <Form.TextArea required label='Endereço completo' value={enderecoCompleto} onChange={e => setEnderecoCompleto(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group widths="equal">
+                                <Form.Input required  label='Marca e modelo do veículo' value={marcaModelo} onChange={e => setMarcaModelo(e.target.value)} />
+                                <Form.Input required  label='Placa' value={placa} onChange={e => setPlaca(e.target.value)} />
+                                <Form.Input required  label='Número do RENAVAM' value={renavam} onChange={e => setRenavam(e.target.value)} />
+                                <Form.Input required  label='Chassi do veículo' value={chassi} onChange={e => setChassi(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group widths="equal">
+                                <Form.Input required  label='Data da multa'>
+                                <InputMask
+										mask="99/99/9999"
+										maskChar={null}
+										placeholder="Ex: 20/03/1985"
+										value={dataMulta}
+										onChange={e => setDataMulta(e.target.value)}
+									/>
+                                </Form.Input>
+                                <Form.Input required  label='Orgão que emitiu a notificação' value={orgaoEmissor} onChange={e => setOrgaoEmissor(e.target.value)} />
+                                <Form.Input required  label='Número da notificação' value={notificacao} onChange={e => setNotificacao(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group widths="equal">
+                                <Form.TextArea required label='Razões pelas quais a penalidade deve ser cancelada' value={justificativaCancelamento} onChange={e => setJustificativaCancelamento(e.target.value)}/>
+                            </Form.Group>
+
+                            <Button
+                                animated
+                                inverted
+                                circular
+                                //as={Link}
+                                //to="/pdf"
+                                icon
+                                labelPosition='left'
+                                color='orange'
+                                floated='right'
+                                onClick={() => salvar()}
+                            >
+                                <Icon name='file pdf outline' />
+                                Gerar PDF
+                            </Button>
+
+                        </Form>
+
+
+                    </Container>
+                </div>
+            </Grid>
+
+
+        </>
+
+    )
+}
