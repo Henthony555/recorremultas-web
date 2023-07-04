@@ -20,6 +20,8 @@ import DadosCadastrados from './views/usuario/DadosCadastrados';
 import HistoricoPeticao from './views/usuario/HistoricoPeticao';
 import Usuario from './views/usuario/Usuario';
 
+import PdfPeticao from './views/CriarPeticao/pdfPeticao';
+
 function Rotas() {
     return (
         <>
@@ -45,6 +47,8 @@ function Rotas() {
                 <Route path="admPeticao" element={ <Peticao/>} />
                 <Route path="admRegistros" element={ <Registros/>} />
                 <Route path="admCadastroMulta" element={ <CadastrarMulta/>} />
+
+                <Route path="pdf" element={ <PdfPeticao/>} />
                 
                 
             </Routes>

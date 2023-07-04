@@ -1,11 +1,48 @@
-import React from "react";
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logoGrande.png';
-import { Button, Form, Grid, Image, Container, Segment, Divider, Icon } from 'semantic-ui-react'
+import { notifyError, notifySuccess } from '../../util/Util';
 
-class Login extends React.Component {
+export default function Login(){
 
-    render() {
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
+            authDomain: "re-corre-multas.firebaseapp.com",
+            databaseURL: "https://re-corre-multas-default-rtdb.firebaseio.com",
+            projectId: "re-corre-multas",
+            storageBucket: "re-corre-multas.appspot.com",
+            messagingSenderId: "669467425665",
+            appId: "1:669467425665:web:ae9577ef0515b756c0c680",
+            measurementId: "G-EHR5PLXT9R"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+
+        function logar(){
+            
+        signInWithEmailAndPassword(auth, email, senha)
+          .then((userCredential) => {
+            // Login bem-sucedido
+            const user = userCredential.user;
+            notifySuccess("Usuário Logado");
+            // ...
+          })
+          .catch((error) => {
+            //Ocorreu um erro no login
+            notifyError("Usuário ou senha incorretos");
+          });
+        }
+
         return (
             <>
                 <Grid textAlign='center' verticalAlign='middle' style={{ height: '90vh' }} >
@@ -19,6 +56,8 @@ class Login extends React.Component {
                                     icon='user'
                                     iconPosition='left'
                                     placeholder='E-mail'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
@@ -26,6 +65,8 @@ class Login extends React.Component {
                                     iconPosition='left'
                                     placeholder='Senha'
                                     type='password'
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
                                 />
 
                                 <Link to={'/'}>
@@ -33,6 +74,8 @@ class Login extends React.Component {
                                     color='yellow'
                                      fluid 
                                      size='large'
+                                     onClick={()=>logar()}
+                                     
                                      >
                                         Entrar
                                     </Button>
@@ -57,6 +100,5 @@ class Login extends React.Component {
             </>
         )
     }
-}
 
-export default Login;
+

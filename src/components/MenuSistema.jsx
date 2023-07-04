@@ -7,7 +7,7 @@ class MenuSistema extends React.Component {
 
     state = {
         activeItem: 'home',
-        estaLogado: true
+        estaLogado: false
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })

@@ -1,47 +1,80 @@
-import React from "react";
-import InputMask from 'react-input-mask';
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logo.png';
+import { notifyError, notifySuccess } from '../../util/Util';
 
-class Cadastro extends React.Component {
 
-    render() {
+export default function Cadastro() {
+
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
+            authDomain: "re-corre-multas.firebaseapp.com",
+            databaseURL: "https://re-corre-multas-default-rtdb.firebaseio.com",
+            projectId: "re-corre-multas",
+            storageBucket: "re-corre-multas.appspot.com",
+            messagingSenderId: "669467425665",
+            appId: "1:669467425665:web:ae9577ef0515b756c0c680",
+            measurementId: "G-EHR5PLXT9R"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+
+        const auth = getAuth();
+
+        function salvar(){  
+
+        createUserWithEmailAndPassword(auth, email, senha)
+            .then((userCredential) => {
+                // Cadastro bem-sucedido
+                const user = userCredential.user;
+               
+                notifySuccess('Usuário Cadastrado com sucesso!')
+                
+                // ...
+            })
+            .catch((error) => {
+                //Erro ao cadastrar Usuário 
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                notifyError('Erro ao cadastrar o Usuário!');
+                // ..
+            });
+            
+     
+        }
+
+   
+
         return (
             <>
                 <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
 
                     <Grid.Column style={{ maxWidth: 800 }}>
                         <Segment color='yellow'>
-                            <Grid columns={2}  divided>
-                                <Grid.Column  as='h2'>
-                                   Criar uma conta
-                                    <Form size='large' style={{ marginTop: '2%' }}>
-
-                                        <Form.Input
-                                            fluid
-                                            icon='user circle'
-                                            iconPosition='left'
-                                            placeholder='Nome do usuário'
-                                        />
-
-                                        <Form.Input
-                                            fluid
-                                            icon
-                                            iconPosition='left'
-                                        >
-                                            <Icon name='address card' />
-                                            <InputMask
-                                                placeholder='CPF'
-                                                mask="999.999.999-99"
-                                            />
-                                        </Form.Input>
+                            <Grid columns={2} divided>
+                                <Grid.Column as='h2'>
+                                    Criar uma conta
+                                    <Form size='large' style={{ marginTop: '2%' }}>                                
 
                                         <Form.Input
                                             fluid
                                             icon='envelope'
                                             iconPosition='left'
                                             placeholder='E-mail'
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value )}
+
                                         />
 
                                         <Form.Input
@@ -50,6 +83,8 @@ class Cadastro extends React.Component {
                                             iconPosition='left'
                                             placeholder='Senha'
                                             type='password'
+                                            value={senha}
+                                            onChange={e => setSenha(e.target.value )}
                                         />
 
                                         <Form.Input
@@ -58,11 +93,14 @@ class Cadastro extends React.Component {
                                             iconPosition='left'
                                             placeholder='Confirmar senha'
                                             type='password'
+                                            value={senha}
+                                            onChange={e => setSenha(e.target.value )}
                                         />
 
-                                        <Button color='yellow' fluid size='large'>
+                                        <Link to={'/'}>
+                                        <Button color='yellow' fluid size='large' onClick={()=>salvar()}>
                                             Registrar
-                                        </Button>
+                                        </Button></Link>
 
                                     </Form>
                                 </Grid.Column>
@@ -70,7 +108,7 @@ class Cadastro extends React.Component {
                                 <Grid.Column>
                                     <Grid.Row>
                                         <Image src={logo} size="small" circular centered />
-                                        
+
                                     </Grid.Row>
                                     <Grid.Row style={{ marginTop: '10%' }} >
                                         <Button color='google plus' size='large'>
@@ -91,6 +129,4 @@ class Cadastro extends React.Component {
             </>
         )
     }
-}
 
-export default Cadastro;
