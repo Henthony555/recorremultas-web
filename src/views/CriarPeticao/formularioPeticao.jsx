@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/ENDERECO_API';
 
@@ -22,6 +23,32 @@ export default function FormularioPeticao () {
     const [orgaoEmissor, setOrgaoEmissor] = useState();
     const [notificacao, setNotificacao] = useState();
     const [justificativaCancelamento, setJustificativaCancelamento] = useState();
+
+    const { state } = useLocation();
+	useEffect(() => {
+		if (state != null && state.id != null) {
+			axios.get(ENDERECO_API + "api/peticao" + state.id)
+				.then((response) => {
+					setNomeCompleto(response.data.nome)
+					setNacionalidade(response.data.nacionalidade)
+					setEstadoCivil(response.data.estadoCivil)
+					setProfissao(response.data.profissao)
+					setCnh(response.data.cnh)
+					setOrgaoExpeditor(response.data.orgaoExpeditor)
+					setCpf(response.data.cpf)
+	                setTelefone(response.data.telefone)
+                    setEnderecoCompleto(response.data.enderecoCompleto)
+                    setMarcaModelo(response.data.marcaModelo)
+	                setPlaca(response.data.placa)
+		            setRenavam(response.data.renavam)
+	                setChassi(response.data.chassi)
+	                setDataMulta(response.data.dataMulta)
+	                setOrgaoEmissor(response.data.orgaoEmissor)
+					setNotificacao(response.data.notificacao)
+	                setJustificativaCancelamento(response.data.justificativaCancelamento)
+				})
+		}
+	},[state])
     
 
     function salvar() {
