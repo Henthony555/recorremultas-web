@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Button, Container, Divider, Grid, Icon, Table } from 'semantic-ui-react';
-import { ENDERECO_API } from '../../util/ENDERECO_API';
+import { ENDERECO_API } from '../../util/Constantes';
 
 class DadosCadastrados extends React.Component {
     state = {
