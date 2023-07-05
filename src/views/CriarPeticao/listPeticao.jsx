@@ -83,10 +83,10 @@ class ListCliente extends React.Component {
 
                                 <Table.Body>
 
-                                    {this.state.listaClientes.map(cliente => (
+                                    {this.state.listaPeticao.map(peticao => (
 
                                         <Table.Row>
-                                            <Table.Cell>{cliente.nome}</Table.Cell>
+                                            <Table.Cell>{peticao.NomeCompleto}</Table.Cell>
                                             <Table.Cell>{cliente.cpf}</Table.Cell>
                                             <Table.Cell>{this.formatarData(cliente.dataNascimento)}</Table.Cell>
                                             <Table.Cell>{cliente.foneCelular}</Table.Cell>
