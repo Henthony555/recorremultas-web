@@ -31,13 +31,13 @@ class Multas extends React.Component {
  
     remover = async () => {
 
-        await axios.delete(ENDERECO_API + 'api/multa' + this.state.idRemover)
+        await axios.delete(ENDERECO_API + 'api/multa/' + this.state.idRemover)
         .then((response) => {
    
             this.setState({ openModal: false })
             console.log('Multa removida com sucesso.')
    
-            axios.get(ENDERECO_API + "api/multa")
+            axios.get(ENDERECO_API + "api/multa/")
             .then((response) => {
            
                 this.setState({
@@ -60,7 +60,7 @@ class Multas extends React.Component {
 
     carregarLista = () => {
 
-        axios.get(ENDERECO_API + "api/multa")
+        axios.get(ENDERECO_API + "api/multa/")
             .then((response) => {
 
                 this.setState({
@@ -127,7 +127,7 @@ class Multas extends React.Component {
                                                 icon='edit'
                                                 color='blue'
                                                 title='Clique aqui para editar os dados desta multa'>
-                                                <Link to="/form-categoriaProduto" state={{ id: multa.id }} style={{ color: 'green' }}> <Icon name='edit'/> </Link>
+                                                <Link to="/admCadastroMulta" state={{ id: multa.id }} style={{ color: 'green' }}> <Icon name='edit'/> </Link>
                                                 </Button> &nbsp;
                                             <Button
                                                 inverted
@@ -144,7 +144,7 @@ class Multas extends React.Component {
                                 </Table.Body>
                                     
                                 </Table>
-                                {/*<br /><br /><br />
+                                <br /><br /><br />
                                 <Link to={'/admGerenciarPeticao'}>
                                     <Button
                                         type="button"
@@ -157,7 +157,7 @@ class Multas extends React.Component {
                                         <Icon name='reply' />
                                         Voltar
                                     </Button>
-                                    </Link> */}
+                                    </Link>
                             </div>
                         </Container>
                     </div>

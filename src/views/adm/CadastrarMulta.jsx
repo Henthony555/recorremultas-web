@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/Constantes';
+import { notifyError, notifySuccess } from '../../util/Util';
 
 export default function CadastrarMulta() {
 
@@ -41,12 +42,12 @@ export default function CadastrarMulta() {
 
         if (IdMulta != null) { //Alteração:
 			axios.put(ENDERECO_API + "api/multa/" + IdMulta, multaRequest)
-				.then((response) => { console.log('Multa alterado com sucesso.') })
-				.catch((error) => { console.log('Erro ao alterar uma multa.') })
+				.then((response) => { notifySuccess("Multa alterada com sucesso.") })
+				.catch((error) => { notifyError("Erro ao alterar multa.") })
 		} else { //Cadastro:
 			axios.post(ENDERECO_API + "api/multa", multaRequest)
-				.then((response) => { console.log('Multa cadastrada com sucesso.') })
-				.catch((error) => { console.log('Erro ao incluir a multa.') })
+				.then((response) => { notifySuccess('Multa cadastrada com sucesso.') })
+				.catch((error) => { notifySuccess('Erro ao incluir a multa.') })
 		}
 	}
 

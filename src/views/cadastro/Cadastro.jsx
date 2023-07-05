@@ -12,6 +12,8 @@ export default function Cadastro() {
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
+    
+    
 
 
         const firebaseConfig = {
@@ -53,6 +55,7 @@ export default function Cadastro() {
             
      
         }
+
 
    
 

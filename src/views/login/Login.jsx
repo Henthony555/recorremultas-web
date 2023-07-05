@@ -7,10 +7,12 @@ import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'se
 import logo from '../../assets/img/logoGrande.png';
 import { notifyError, notifySuccess } from '../../util/Util';
 
+
 export default function Login(){
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
+    const [user, setUser] = useState();
 
         const firebaseConfig = {
             apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
@@ -42,6 +44,19 @@ export default function Login(){
             notifyError("Usuário ou senha incorretos");
           });
         }
+
+    
+    {/*
+        const handleLogin = () => {
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+
+        const handleLogout = () => {
+            // Remover o usuário do localStorage
+            localStorage.removeItem('user');
+            setUser(null);
+          };
+        */}
 
         return (
             <>
