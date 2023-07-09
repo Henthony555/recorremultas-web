@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
+import InputMask from 'react-input-mask';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';

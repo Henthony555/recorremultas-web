@@ -1,15 +1,19 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import React, { useEffect, useState} from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
+import InputMask from 'react-input-mask';
 import logo from '../../assets/img/logo.png';
-import { notifyError, notifySuccess } from '../../util/Util';
+import { mensagemErro, notifyError, notifySuccess } from '../../util/Util';
+import { ENDERECO_API } from '../../util/Constantes';
 
 
 export default function Cadastro() {
 
+    {/* 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     
@@ -33,9 +37,64 @@ export default function Cadastro() {
 
 
         const auth = getAuth();
+*/} 
+    const { state } = useLocation();
+	useEffect(() => {
+		if (state != null && state.id != null) {
+			axios.get(ENDERECO_API  + "api/usuario/" + state.id)
+				.then((response) => {
+					setIdUsuario(response.data.id)
+					setNomeCompleto(response.data.nomeCompleto)
+					setDataNascimento(response.data.dataNascimento)
+					setCpf(response.data.cpf)
+					setEmail(response.data.email)
+					setSenha(response.data.senha)
+				})
+		}
+        
+	}, [state])
+
+    const [idUsuario, setIdUsuario] = useState();
+	const [nomeCompleto, setNomeCompleto] = useState();
+	const [dataNascimento, setDataNascimento] = useState();
+	const [cpf, setCpf] = useState();
+	const [email, setEmail] = useState();
+	const [senha, setSenha] = useState();
 
         function salvar(){  
 
+            let usuarioRequest = {
+                nomeCompleto: nomeCompleto,
+                dataNascimento: dataNascimento,
+                cpf: cpf,
+                email: email,
+                senha: senha
+            }
+
+            
+
+        if (idUsuario != null) { //Alteração:
+			axios.put(ENDERECO_API + "api/usuario/" + idUsuario, usuarioRequest)
+				.then((response) => { notifySuccess('Usuario alterado com sucesso.')})
+				.catch((error) => { if (error.response) {
+					notifyError(error.response.data.errors[0].defaultMessage)
+					} else {
+					notifyError(mensagemErro)
+					} 
+		})
+		} else { //Cadastro:
+			axios.post(ENDERECO_API + "api/usuario/", usuarioRequest)
+				.then((response) => { notifySuccess('Usuario cadastrado com sucesso.') 
+				})
+				.catch((error) => { if (error.response) {
+					notifyError(error.response.data.errors[0].defaultMessage)
+					} else {
+					notifyError(mensagemErro)
+					}  
+				})
+		}
+
+         {/*
         createUserWithEmailAndPassword(auth, email, senha)
             .then((userCredential) => {
                 // Cadastro bem-sucedido
@@ -53,11 +112,9 @@ export default function Cadastro() {
                 // ..
             });
             
-     
-        }
-
-
-   
+     */}
+        
+	}
 
         return (
             <>
@@ -68,7 +125,37 @@ export default function Cadastro() {
                             <Grid columns={2} divided>
                                 <Grid.Column as='h2'>
                                     Criar uma conta
-                                    <Form size='large' style={{ marginTop: '2%' }}>                                
+                                    <Form size='large' style={{ marginTop: '2%' }}>   
+
+                                        <Form.Input
+                                            fluid
+                                            placeholder='Nome completo'
+                                            value={nomeCompleto}
+                                            onChange={e => setNomeCompleto(e.target.value )}
+                                        />
+
+                                        <Form.Input
+                                            fluid
+                                           
+                                        >
+                                            <InputMask
+                                                mask="99/99/9999"
+                                                maskChar={null}
+                                                placeholder="Ex: 20/03/1985"
+                                                value={dataNascimento}
+                                                onChange={e => setDataNascimento(e.target.value)}
+                                            />
+                                        </Form.Input>
+                                        <Form.Input
+                                            fluid
+                                        >
+                                            <InputMask
+                                                placeholder="CPF"
+                                                mask="999.999.999-99"
+                                                value={cpf}
+                                                onChange={e => setCpf(e.target.value)}
+
+                                        /></Form.Input>                    
 
                                         <Form.Input
                                             fluid

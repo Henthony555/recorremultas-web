@@ -12,8 +12,9 @@ export default function Login(){
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-    const [user, setUser] = useState();
+    //const [user, setUser] = useState();
 
+    {/* 
         const firebaseConfig = {
             apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
             authDomain: "re-corre-multas.firebaseapp.com",
@@ -44,7 +45,7 @@ export default function Login(){
             notifyError("Usuário ou senha incorretos");
           });
         }
-
+*/}
     
     {/*
         const handleLogin = () => {
@@ -89,7 +90,7 @@ export default function Login(){
                                     color='yellow'
                                      fluid 
                                      size='large'
-                                     onClick={()=>logar()}
+                                     //onClick={()=>logar()}
                                      
                                      >
                                         Entrar
