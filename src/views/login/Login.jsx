@@ -1,20 +1,28 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logoGrande.png';
-import { notifyError, notifySuccess } from '../../util/Util';
+import { notifyError } from '../../util/Util';
 
 
 export default function Login(){
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-    //const [user, setUser] = useState();
+    const [user, setUser] = useState();
 
-    {/* 
+
+    useEffect(() => {
+
+        if(localStorage.getItem('user') != null){
+            window.location.href = 'http://localhost:3000/formularioPeticao';
+        }
+
+    },[])
+    
         const firebaseConfig = {
             apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
             authDomain: "re-corre-multas.firebaseapp.com",
@@ -37,27 +45,20 @@ export default function Login(){
           .then((userCredential) => {
             // Login bem-sucedido
             const user = userCredential.user;
-            notifySuccess("Usuário Logado");
+            localStorage.setItem('user', JSON.stringify(user));
+            console.log(user.uid);
+            window.location.href = 'http://localhost:3000/formularioPeticao';
             // ...
           })
           .catch((error) => {
             //Ocorreu um erro no login
+            localStorage.removeItem('user');
             notifyError("Usuário ou senha incorretos");
           });
         }
-*/}
-    
-    {/*
-        const handleLogin = () => {
-            localStorage.setItem('user', JSON.stringify(user));
-        }
 
-        const handleLogout = () => {
-            // Remover o usuário do localStorage
-            localStorage.removeItem('user');
-            setUser(null);
-          };
-        */}
+   
+    
 
         return (
             <>
@@ -90,7 +91,7 @@ export default function Login(){
                                     color='yellow'
                                      fluid 
                                      size='large'
-                                     //onClick={()=>logar()}
+                                     onClick={()=>logar()}
                                      
                                      >
                                         Entrar

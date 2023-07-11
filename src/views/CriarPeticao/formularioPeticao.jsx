@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
-import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import { ENDERECO_API } from '../../util/Constantes';
 
 export default function FormularioPeticao() {
@@ -28,6 +27,10 @@ export default function FormularioPeticao() {
 
     const { state } = useLocation();
 	useEffect(() => {
+
+  if(localStorage.getItem('user') != null){
+
+
 		if (state != null && state.id != null) {
 			axios.get(ENDERECO_API + "api/peticao" + state.id)
 				.then((response) => {
@@ -50,6 +53,10 @@ export default function FormularioPeticao() {
 	                setJustificativaCancelamento(response.data.justificativaCancelamento)
 				})
 		}
+
+    }else{
+        window.location.href = 'http://localhost:3000/';
+    }
 	},[state])
     
 
