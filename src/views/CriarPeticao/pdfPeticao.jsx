@@ -1,7 +1,8 @@
 import { Document, PDFDownloadLink, PDFViewer, Page, StyleSheet, Text } from '@react-pdf/renderer';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { Button, Grid, Icon } from 'semantic-ui-react';
+import axios from 'axios';
 
 
 
@@ -32,14 +33,14 @@ const styles = StyleSheet.create({
 });
 
 // 
-const PDF = ({ peticaoId }) => (
+const PDF = ({ dadosPeticao }) => (
     <Document>
         <Page size="A4" style={styles.page}>
 
             <Text style={styles.Titulo}>EXCELENTÍSSIMO(A) SENHOR(A) PRESIDENTE(A) DA JARI - JUNTA ADMINISTRATIVA DERECURSOS DE INFRAÇÕES</Text>
 
             <Text style={styles.Texto}>
-                (Nome completo), nacionalidade: (nacionalidade), (estado civil), profissão: (profissão), Carteira Nacional de
+            {dadosPeticao.nomeCompleto}, nacionalidade: (nacionalidade), (estado civil), profissão: (profissão), Carteira Nacional de
                 Habilitação(CNH) n. (CNH), expedida por (Órgão expedidor), CPF n. (CPF), telefone n. (Número), reside em:
             </Text>
 
@@ -115,15 +116,36 @@ const PDF = ({ peticaoId }) => (
 function PdfPeticao() {
 
     const location = useLocation();
-    const peticaoId = location.state.id;
-    
+    const peticaoRequest = location.state.peticaoRequest;
+
+    //const location = useLocation();
+    //const peticaoId = location.state.id;
+
+    //const [dadosPeticao, setDadosPeticao] = useState(null);
+
+    /*useEffect(() => {
+        // Função assíncrona para buscar os dados da petição do servidor
+        const buscarDadosPeticao = async () => {
+            try {
+                const response = await axios.get(`ENDERECO_API/api/peticao/${peticaoId}`);
+                const dados = response.data;
+                setDadosPeticao(dados);
+            } catch (error) {
+                console.log('Erro ao buscar os dados da petição:', error);
+            }
+        };
+
+        // Chama a função para buscar os dados da petição ao carregar o componente
+        buscarDadosPeticao();
+    }, [peticaoId]);*/
+
     return (
         <>
             <Grid textAlign='center' style={{ minHeight: '90vh', width: "100%" }}>
 
                 <Grid.Row style={{ width: "100%", minHeight: '80vh' }}>
                     <PDFViewer style={{ width: '80%', height: '100vh' }}>
-                        <PDF peticaoId={peticaoId} />
+                        <PDF dadosPeticao={peticaoRequest} />     
                     </PDFViewer>
                 </Grid.Row>
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/Constantes';
 
@@ -26,6 +26,7 @@ export default function FormularioPeticao() {
     const [justificativaCancelamento, setJustificativaCancelamento] = useState();
 
     const { state } = useLocation();
+    const navigate = useNavigate();
 	useEffect(() => {
 
   if(localStorage.getItem('user') != null){
@@ -83,9 +84,11 @@ export default function FormularioPeticao() {
         }
 
         axios.post(ENDERECO_API + "api/peticao", peticaoRequest)
-            .then((response) => { console.log('Formulário cadastrado com sucesso.') })
+            .then((response) => { 
+                console.log('Formulário cadastrado com sucesso.')
+                navigate("/pdf", { peticaoRequest: peticaoRequest });
+            })
             .catch((error) => { console.log('Erro ao incluir o Fomulário.') })
-
     }
 
     function formatarData(dataParam) {
@@ -172,11 +175,11 @@ export default function FormularioPeticao() {
                                 animated
                                 inverted
                                 circular
-                                as={Link}
+                                /*as={Link}
                                 to={{
                                     pathname: '/pdf',
                                     state: { id: state?.id  }
-                                  }}
+                                  }}*/
                                 icon
                                 labelPosition='left'
                                 color='orange'
