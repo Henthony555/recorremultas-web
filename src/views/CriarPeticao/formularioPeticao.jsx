@@ -165,8 +165,11 @@ export default function FormularioPeticao() {
                                 animated
                                 inverted
                                 circular
-                                //as={Link}
-                                //to="/pdf"
+                                as={Link}
+                                to={{
+                                    pathname: '/pdf',
+                                    state: { id: state?.id  }
+                                  }}
                                 icon
                                 labelPosition='left'
                                 color='orange'

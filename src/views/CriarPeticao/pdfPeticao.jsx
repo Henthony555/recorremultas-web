@@ -1,8 +1,9 @@
+import { Document, PDFDownloadLink, PDFViewer, Page, StyleSheet, Text } from '@react-pdf/renderer';
 import React from 'react';
-import ReactPDF from '@react-pdf/renderer';
-import { Page, Text, Font, Document, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
-import { Button, Form, Grid, Icon, Container, Segment } from 'semantic-ui-react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { Button, Grid, Icon } from 'semantic-ui-react';
+
+
 
 const styles = StyleSheet.create({
     page: {
@@ -30,7 +31,8 @@ const styles = StyleSheet.create({
     }
 });
 
-const PDF = () => (
+// 
+const PDF = ({ peticaoId }) => (
     <Document>
         <Page size="A4" style={styles.page}>
 
@@ -111,17 +113,21 @@ const PDF = () => (
 );
 
 function PdfPeticao() {
+
+    const location = useLocation();
+    const peticaoId = location.state.id;
+    
     return (
         <>
             <Grid textAlign='center' style={{ minHeight: '90vh', width: "100%" }}>
 
                 <Grid.Row style={{ width: "100%", minHeight: '80vh' }}>
                     <PDFViewer style={{ width: '80%', height: '100vh' }}>
-                        <PDF />
+                        <PDF peticaoId={peticaoId} />
                     </PDFViewer>
                 </Grid.Row>
 
-                <Grid style={{width: '60%'}}>
+                <Grid style={{ width: '60%' }}>
                     <Grid.Column floated='left' width={5}>
 
                         <Button
