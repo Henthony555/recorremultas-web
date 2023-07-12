@@ -2,7 +2,7 @@ import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logo.png';
 import { notifyError, notifySuccess } from '../../util/Util';
@@ -13,6 +13,7 @@ export default function Cadastro() {
    
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
+    const navigate = useNavigate();
     
     
 
@@ -96,8 +97,9 @@ export default function Cadastro() {
             .then((userCredential) => {
                 // Cadastro bem-sucedido
                 const user = userCredential.user;
-               
+                localStorage.setItem('user', JSON.stringify(user));
                 notifySuccess('Usuário Cadastrado com sucesso!')
+                navigate('/criarPeticao');
                 
                 // ...
             })
