@@ -1,19 +1,16 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import axios from 'axios';
-import React, { useEffect, useState} from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
-import InputMask from 'react-input-mask';
 import logo from '../../assets/img/logo.png';
-import { mensagemErro, notifyError, notifySuccess } from '../../util/Util';
-import { ENDERECO_API } from '../../util/Constantes';
+import { notifyError, notifySuccess } from '../../util/Util';
 
 
 export default function Cadastro() {
 
-    {/* 
+   
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     
@@ -37,8 +34,8 @@ export default function Cadastro() {
 
 
         const auth = getAuth();
-*/} 
-    const { state } = useLocation();
+
+{/*    const { state } = useLocation();
 	useEffect(() => {
 		if (state != null && state.id != null) {
 			axios.get(ENDERECO_API  + "api/usuario/" + state.id)
@@ -52,18 +49,18 @@ export default function Cadastro() {
 				})
 		}
         
-	}, [state])
+	}, [state])*/} 
 
-    const [idUsuario, setIdUsuario] = useState();
+    {/* const [idUsuario, setIdUsuario] = useState();
 	const [nomeCompleto, setNomeCompleto] = useState();
 	const [dataNascimento, setDataNascimento] = useState();
 	const [cpf, setCpf] = useState();
 	const [email, setEmail] = useState();
-	const [senha, setSenha] = useState();
+	const [senha, setSenha] = useState();*/} 
 
         function salvar(){  
 
-            let usuarioRequest = {
+           {/*  let usuarioRequest = {
                 nomeCompleto: nomeCompleto,
                 dataNascimento: dataNascimento,
                 cpf: cpf,
@@ -92,9 +89,9 @@ export default function Cadastro() {
 					notifyError(mensagemErro)
 					}  
 				})
-		}
+		}*/}
 
-         {/*
+         
         createUserWithEmailAndPassword(auth, email, senha)
             .then((userCredential) => {
                 // Cadastro bem-sucedido
@@ -112,7 +109,7 @@ export default function Cadastro() {
                 // ..
             });
             
-     */}
+    
         
 	}
 
@@ -126,7 +123,7 @@ export default function Cadastro() {
                                 <Grid.Column as='h2'>
                                     Criar uma conta
                                     <Form size='large' style={{ marginTop: '2%' }}>   
-
+                                    {/* 
                                         <Form.Input
                                             fluid
                                             placeholder='Nome completo'
@@ -155,8 +152,8 @@ export default function Cadastro() {
                                                 value={cpf}
                                                 onChange={e => setCpf(e.target.value)}
 
-                                        /></Form.Input>                    
-
+                                        /></Form.Input>                   
+                                    */} 
                                         <Form.Input
                                             fluid
                                             icon='envelope'

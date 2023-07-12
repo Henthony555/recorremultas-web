@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Form, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import logo from '../../assets/img/logoGrande.png';
-import { notifyError } from '../../util/Util';
+import { notifyError, notifySuccess } from '../../util/Util';
 
 
 export default function Login(){
@@ -46,7 +46,7 @@ export default function Login(){
             // Login bem-sucedido
             const user = userCredential.user;
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(user.uid);
+            notifySuccess("Usuário Logado com sucesso");
             window.location.href = 'http://localhost:3000/formularioPeticao';
             // ...
           })
