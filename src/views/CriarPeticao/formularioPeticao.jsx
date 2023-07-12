@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
+<<<<<<< HEAD
 import { Link, useLocation } from 'react-router-dom';
+=======
+import { useLocation, useNavigate } from 'react-router-dom';
+>>>>>>> 7049d157a728f8b9f955f3231134d151d3fce5c5
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/Constantes';
 
