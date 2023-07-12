@@ -18,7 +18,7 @@ export default function Login(){
     useEffect(() => {
 
         if(localStorage.getItem('user') != null){
-            window.location.href = 'http://localhost:3000/formularioPeticao';
+            window.location.href = 'http://localhost:3000/criarPeticao';
         }
 
     },[])
@@ -47,7 +47,7 @@ export default function Login(){
             const user = userCredential.user;
             localStorage.setItem('user', JSON.stringify(user));
             notifySuccess("Usuário Logado com sucesso");
-            window.location.href = 'http://localhost:3000/formularioPeticao';
+            window.location.href = 'http://localhost:3000/criarPeticao';
             // ...
           })
           .catch((error) => {

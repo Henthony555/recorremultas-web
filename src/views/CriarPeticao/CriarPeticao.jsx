@@ -3,15 +3,9 @@ import { Container, Divider, Grid, Icon } from 'semantic-ui-react';
 import CardPeticao from "../componentes/card";
 
 
-class CriarPeticao extends React.Component {
 
+export default function CriarPeticao() {
 
-    state = { activeItem: '10' }
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-    render() {
-        const { activeItem } = this.state
         return (
             
             <>
@@ -29,7 +23,7 @@ class CriarPeticao extends React.Component {
                             <h2 >Vamos começar?</h2>
                             <p> Encontre sua multa</p>
                             
-
+                           
                             <CardPeticao/>
 
                           
@@ -42,6 +36,5 @@ class CriarPeticao extends React.Component {
             
         )
     }
-}
 
-export default CriarPeticao;
+

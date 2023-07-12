@@ -1,18 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Icon, Image, Menu, Segment } from "semantic-ui-react";
 import logo from '../assets/img/logoGrande.png';
 
-class MenuSistema extends React.Component {
 
-    state = {
-        activeItem: 'home',
-        estaLogado: false
-    }
+export default function MenuSistema () {
+     
+    const [activeItem, setActiveItem] = useState('home');
+    const handleItemClick = (name) => {
+        setActiveItem(name);
+        };
+    
+    //const [estaLogado, setEstaLogado] = useState(true);
+    const estaLogado = localStorage.getItem('user') !== null;
+    const navigate = useNavigate();
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-    render() {
+    const handleLogout = () => {
+      // Limpar informações de autenticação ou executar outras ações de logout
+      localStorage.removeItem('user');
+  
+      // Redirecionar para a tela de login
+      navigate('/login');
+    };
+    
+
+   
+   
         return (
             <>
                 <Segment inverted color="yellow">
@@ -20,55 +34,71 @@ class MenuSistema extends React.Component {
                         <Menu.Item>
                             <Image src={logo} as={Link} to='/' size='small' />
                         </Menu.Item>
-
-                        {this.state.estaLogado &&
+                        {estaLogado ? (
                             <>
-                                <Menu.Item
-                                    name='criarPeticao'
-                                    active={this.state.activeItem === 'criarPeticao'}
-                                    onClick={this.handleItemClick}
-                                    as={Link}
-                                    to='/criarPeticao'
-                                />
 
+                                {/* 
                                 <Menu.Item
                                     name='meus dados'
-                                    active={this.state.activeItem === 'meus dados'}
-                                    onClick={this.handleItemClick}
+                                    active={activeItem === 'meus dados'}
+                                    onClick={()=>handleItemClick()}
                                     as={Link}
                                     to='/usuario'
                                 />
+                                */}
+
+                                <Menu.Item
+                                    name='criarPeticao'
+                                    active={activeItem === 'criarPeticao'}
+                                    onClick={()=>handleItemClick()}
+                                    as={Link}
+                                    to='/criarPeticao'
+                                />
+                                
 
                                 <Menu.Item
                                     name='Agencias'
-                                    active={this.state.activeItem === 'meus dados'}
-                                    onClick={this.handleItemClick}
+                                    active={activeItem === 'agencias'}
+                                    onClick={()=>handleItemClick()}
                                     as={Link}
                                     to='/agencias'
-                                />
+                                /> 
 
                                 <Menu.Item position="right" >
                                         <Button
                                             icon
                                             labelPosition='right'
                                             color='orange'
-                                            as={Link}
                                             floated='right'
-                                            to='/login'
-                                        >
+                                            onClick={handleLogout}>
                                             <Icon name='sign-out' />
                                             Sair
                                         </Button>
+                                       
                                 </Menu.Item>
                             </>
-                        }
 
 
+                        ) :(
 
-                        {!this.state.estaLogado &&
+
+                        
                             <>
                                 <Menu.Item position="right" >
                                     
+                                        <Button
+                                            icon
+                                            labelPosition='left'
+                                            color='red'
+                                            floated='left'
+                                            as={Link}
+                                            to='/agencias'
+                                            
+                                        >
+                                            <Icon name='building' />
+                                            Agências
+                                        </Button>
+
                                         <Button
                                             icon
                                             labelPosition='left'
@@ -84,12 +114,11 @@ class MenuSistema extends React.Component {
                                 
                                 </Menu.Item>
                             </>
-                        }
+                        )}
                     </Menu>
                 </Segment>
             </>
         )
     }
-}
 
-export default MenuSistema;
+
