@@ -1,11 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
+<<<<<<< HEAD
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+=======
+<<<<<<< HEAD
+import { useLocation, useNavigate } from 'react-router-dom';
+=======
+<<<<<<< HEAD
+import { Link, useLocation } from 'react-router-dom';
+=======
+import { useLocation, useNavigate } from 'react-router-dom';
+>>>>>>> 7049d157a728f8b9f955f3231134d151d3fce5c5
+>>>>>>> 89adddcf1f8b8b86d1f5db8aec60e4e136bf551a
+>>>>>>> 62f20faf4a0c5183834e19d544848cd8f1cfb04f
 import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/Constantes';
 
 export default function FormularioPeticao() {
+
+    const verificarUser = localStorage.getItem('user');
+    const uidUser = JSON.parse(verificarUser);
 
     const [nomeCompleto, setNomeCompleto] = useState();
     const [nacionalidade, setNacionalidade] = useState();
@@ -26,7 +41,7 @@ export default function FormularioPeticao() {
     const [justificativaCancelamento, setJustificativaCancelamento] = useState();
 
     const { state } = useLocation();
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 	useEffect(() => {
 
   if(localStorage.getItem('user') != null){
@@ -80,13 +95,16 @@ export default function FormularioPeticao() {
             dataMulta: dataMulta,
             orgaoEmissor: orgaoEmissor,
             notificacao: notificacao,
-            justificativaCancelamento: justificativaCancelamento
+            justificativaCancelamento: justificativaCancelamento,
+            id_usuario: uidUser.uid
         }
+
+        localStorage.setItem('peticao', JSON.stringify(peticaoRequest));
 
         axios.post(ENDERECO_API + "api/peticao", peticaoRequest)
             .then((response) => { 
                 console.log('Formulário cadastrado com sucesso.')
-                navigate("/pdf", { peticaoRequest: peticaoRequest });
+                //avigate("/pdf", { peticaoRequest: peticaoRequest });
             })
             .catch((error) => { console.log('Erro ao incluir o Fomulário.') })
     }
@@ -175,11 +193,11 @@ export default function FormularioPeticao() {
                                 animated
                                 inverted
                                 circular
-                                /*as={Link}
+                                as={Link}
                                 to={{
                                     pathname: '/pdf',
                                     state: { id: state?.id  }
-                                  }}*/
+                                  }}
                                 icon
                                 labelPosition='left'
                                 color='orange'
