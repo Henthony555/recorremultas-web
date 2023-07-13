@@ -1,8 +1,7 @@
 import { Document, PDFDownloadLink, PDFViewer, Page, StyleSheet, Text } from '@react-pdf/renderer';
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { Button, Grid, Icon } from 'semantic-ui-react';
-import axios from 'axios';
 
 
 
@@ -33,24 +32,34 @@ const styles = StyleSheet.create({
 });
 
 // 
-const PDF = ({ dadosPeticao }) => (
-    <Document>
+function PDF(){
+
+    const [dadosPeticao, setDadosPeticao] = useState([]);
+
+    useEffect(() => {
+   
+        var peticao = JSON.parse(localStorage.getItem('peticao'));
+        setDadosPeticao(peticao)
+        console.log(dadosPeticao.nacionalidade);
+     }, []);
+
+    return(<Document>
         <Page size="A4" style={styles.page}>
 
             <Text style={styles.Titulo}>EXCELENTÍSSIMO(A) SENHOR(A) PRESIDENTE(A) DA JARI - JUNTA ADMINISTRATIVA DERECURSOS DE INFRAÇÕES</Text>
 
             <Text style={styles.Texto}>
-            {dadosPeticao.nomeCompleto}, nacionalidade: (nacionalidade), (estado civil), profissão: (profissão), Carteira Nacional de
-                Habilitação(CNH) n. (CNH), expedida por (Órgão expedidor), CPF n. (CPF), telefone n. (Número), reside em:
+            {dadosPeticao.nomeCompleto}, nacionalidade: {dadosPeticao.nacionalidade}, {dadosPeticao.estadoCivil}, profissão: {dadosPeticao.profissao}, Carteira Nacional de
+                Habilitação(CNH) n. {dadosPeticao.cnh}, expedida por {dadosPeticao.orgaoExpeditor}, CPF n. {dadosPeticao.cpf}, telefone n. {dadosPeticao.telefone}, reside em:
             </Text>
 
             <Text style={styles.Texto}>
-                (Endereço completo)
+                {dadosPeticao.enderecoCompleto}
             </Text>
 
             <Text style={styles.Texto}>
-                proprietário do veículo, modelo (Marca e modelo do veículo), placa (Placa do veículo), RENAVAM n. (Número do
-                RENAVAM), chassi n. (Chassi do veículo), venho, com fulcro no Código de Trânsito Brasileiro (Lei Federal n.
+                proprietário do veículo, modelo {dadosPeticao.marcaModelo}, placa {dadosPeticao.placa}, RENAVAM n. {dadosPeticao.renavam}, 
+                chassi n. {dadosPeticao.chassi}, venho, com fulcro no Código de Trânsito Brasileiro (Lei Federal n.
                 9.503, de 23 de setembro de 1997), interpor tempestivamente o presente:
             </Text>
 
@@ -64,8 +73,8 @@ const PDF = ({ dadosPeticao }) => (
             <Text style={styles.SubTitlo}>I - DOS FATOS</Text>
 
             <Text style={styles.Texto}>
-                Na data de (data da multa), fui notificado pelo órgão: (órgão que emitiu a notificação), através da Notificação de
-                imposição de Penalidade n. (Número da notificação), da aplicação da penalidade de multa no Valor de R$ (valor
+                Na data de {dadosPeticao.dataMulta}, fui notificado pelo órgão: {dadosPeticao.orgaoEmissor}, através da Notificação de
+                imposição de Penalidade n. {dadosPeticao.notificacao}, da aplicação da penalidade de multa no Valor de R$ (valor
                 da multa) reais, além da perda de (Número de pontos descontados na Carteira) pontos na Carteira Nacional de
                 Habilitação, pelo suposto cometimento da seguinte infração, prevista na legislação brasileira:
             </Text>
@@ -81,7 +90,7 @@ const PDF = ({ dadosPeticao }) => (
             </Text>
 
             <Text style={styles.Texto}>
-                (razões pelas quais a penalidade deve ser cancelada)
+                    {dadosPeticao.justificativaCancelamento}
             </Text>
 
             <Text style={styles.SubTitlo}>III - DOS PEDIDOS</Text>
@@ -108,36 +117,12 @@ const PDF = ({ dadosPeticao }) => (
                 ________________________________
             </Text>
 
-            <Text style={[styles.SubTitlo, styles.centro]}>(Nome completo)</Text>
+            <Text style={[styles.SubTitlo, styles.centro]}>{dadosPeticao.nomeCompleto}</Text>
         </Page>
-    </Document>
-);
+    </Document>);
+};
 
 function PdfPeticao() {
-
-    const location = useLocation();
-    const peticaoRequest = location.state.peticaoRequest;
-
-    //const location = useLocation();
-    //const peticaoId = location.state.id;
-
-    //const [dadosPeticao, setDadosPeticao] = useState(null);
-
-    /*useEffect(() => {
-        // Função assíncrona para buscar os dados da petição do servidor
-        const buscarDadosPeticao = async () => {
-            try {
-                const response = await axios.get(`ENDERECO_API/api/peticao/${peticaoId}`);
-                const dados = response.data;
-                setDadosPeticao(dados);
-            } catch (error) {
-                console.log('Erro ao buscar os dados da petição:', error);
-            }
-        };
-
-        // Chama a função para buscar os dados da petição ao carregar o componente
-        buscarDadosPeticao();
-    }, [peticaoId]);*/
 
     return (
         <>
@@ -145,7 +130,7 @@ function PdfPeticao() {
 
                 <Grid.Row style={{ width: "100%", minHeight: '80vh' }}>
                     <PDFViewer style={{ width: '80%', height: '100vh' }}>
-                        <PDF dadosPeticao={peticaoRequest} />     
+                        <PDF />     
                     </PDFViewer>
                 </Grid.Row>
 
