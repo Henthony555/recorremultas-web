@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
-import MenuAdm from "./components/MenuAdm";
 import CriarPeticao from './views/CriarPeticao/CriarPeticao';
 import FormularioPeticao from './views/CriarPeticao/formularioPeticao';
 import CadastrarMulta from './views/adm/CadastrarMulta';
@@ -21,6 +20,7 @@ import HistoricoPeticao from './views/usuario/HistoricoPeticao';
 import Usuario from './views/usuario/Usuario';
 
 import PdfPeticao from './views/CriarPeticao/pdfPeticao';
+import ListAgencias from './views/adm/ListAgencias';
 
 function Rotas() {
     return (
@@ -43,6 +43,7 @@ function Rotas() {
                 
                 <Route path="admagencias" element={ <ADMagencias/> } />
                 <Route path="admGerenciarPeticao" element={ <GerenciarPeticao/>} /> 
+                <Route path="listAgencias" element={ <ListAgencias/> } />
                 <Route path="admMultas" element={ <Multas/>} />   
                 <Route path="admPeticao" element={ <Peticao/>} />
                 <Route path="admRegistros" element={ <Registros/>} />

@@ -39,7 +39,7 @@ export default function MenuSistema ()  {
                            
                                    
                                     as={Link}
-                                    to='/agencias'
+                                    to='/listagencias'
                                 />
 
                                 <Menu.Item position="right" >
