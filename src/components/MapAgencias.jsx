@@ -13,11 +13,11 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import "../assets/css/MapAgencias.css";
-//import { MAP_KEY } from "../util/MAP_KEY";
+import { MAP_KEY } from "../util/MAP_KEY";
 
 export default function MapAgencias() {
   const { isLoaded } = useLoadScript({
-   // googleMapsApiKey: MAP_KEY,
+   googleMapsApiKey: MAP_KEY,
     libraries: ["places"],
   });
 
