@@ -1,102 +1,123 @@
+import { Document, PDFViewer, Page, StyleSheet } from '@react-pdf/renderer';
 import axios from 'axios';
-import React from 'react';
-import { Button, Container, Divider, Grid, Icon, Table } from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Grid, Icon } from 'semantic-ui-react';
+import { ENDERECO_API } from '../../util/Constantes';
 
-class DadosCadastrados extends React.Component {
-  state = {
-    listaDadosCadastrados: []
-  }
+const styles = StyleSheet.create({
+  page: {
+    paddingTop: 25,
+    paddingBottom: 25,
+    paddingHorizontal: 25,
+  },
+  Titulo: {
+    fontSize: 12,
+    fontWeight: 900,
+    marginBottom: 6,
+  },
+  SubTitlo: {
+    fontWeight: 900,
+    fontSize: 12,
+    margin: 6,
+  },
+  Texto: {
+    margin: 6,
+    fontSize: 11,
+    textAlign: 'justify',
+  },
+  centro: {
+    textAlign: 'center',
+  },
+});
 
-  componentDidMount() {
-    this.carregarLista();
-  }
+function PdfPeticao() {
+  const [pdfList, setPdfList] = useState([]);
 
-  carregarLista = () => {
-    axios.get("http://localhost:5438/api/peticao")
+  useEffect(() => {
+    axios
+      .get(ENDERECO_API + 'api/pdf')
       .then((response) => {
-        this.setState({
-          listaDadosCadastrados: response.data
-        });
+        setPdfList(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.log(error);
       });
+  }, []);
+
+  const gerarNovamentePDF = () => {
+    axios
+    .get(ENDERECO_API + 'api/pdf') // Endpoint para gerar o PDF novamente
+    .then((response) => {
+      // Criar um Blob a partir dos dados do PDF retornado pela API
+      const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+
+      // Criar um URL temporário para o Blob
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+
+      // Abrir o PDF em uma nova janela ou aba do navegador
+      window.open(pdfUrl, '_blank');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
-  formatarData = (dataParam) => {
-    if (dataParam == null || dataParam === '') {
-      return '';
-    }
+  return (
+    <>
+      <Grid textAlign="center" style={{ minHeight: '90vh', width: '100%' }}>
+        <Grid.Row style={{ width: '100%', minHeight: '80vh' }}>
+          <PDFViewer style={{ width: '80%', height: '100vh' }}>
+            <Document>
+              <Page size="A4" style={styles.page}>
+                
+              </Page>
+            </Document>
+          </PDFViewer>
+        </Grid.Row>
 
-    let dia = dataParam.substr(8, 2);
-    let mes = dataParam.substr(5, 2);
-    let ano = dataParam.substr(0, 4);
-    let dataFormatada = dia + '/' + mes + '/' + ano;
+        <Grid style={{ width: '60%' }}>
+          <Grid.Column floated="left" width={5}>
+            <Button
+              type="button"
+              inverted
+              circular
+              as={Link}
+              to="/formularioPeticao"
+              icon
+              labelPosition="left"
+              color="blue"
+            >
+              <Icon name="cancel" />
+              Cancelar
+            </Button>
+          </Grid.Column>
 
-    return dataFormatada;
-  };
-
-  render() {
-    return (
-      <>
-        <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-          <div style={{ marginTop: '3%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Container textAlign="justified">
-              <h1> <Icon name='clipboard outline' /><Icon /> Dados Cadastrados</h1>
-              <Divider />
-
-              <br /><br /><br />
-
-              <Table color='orange' sortable celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Nome Completo</Table.HeaderCell>
-                    <Table.HeaderCell>Nacionalidade</Table.HeaderCell>
-                    <Table.HeaderCell>Estado Civil</Table.HeaderCell>
-                    <Table.HeaderCell>Profissão</Table.HeaderCell>
-                    <Table.HeaderCell>CNH</Table.HeaderCell>
-                    <Table.HeaderCell>Órgão expedidor</Table.HeaderCell>
-                    <Table.HeaderCell>CPF</Table.HeaderCell>
-                    <Table.HeaderCell>Telefone</Table.HeaderCell>
-                    <Table.HeaderCell>Marca e modelo do veículo</Table.HeaderCell>
-                    <Table.HeaderCell>Placa</Table.HeaderCell>
-                    <Table.HeaderCell textAlign='center' width={2}>Ações</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                  {this.state.listaDadosCadastrados.map((dadosCadastrados, index) => (
-                    <Table.Row key={index}>
-                      <Table.Cell>{dadosCadastrados.nomeCompleto}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.nacionalidade}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.estadoCivil}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.profissao}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.cnh}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.orgaoExpeditor}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.cpf}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.telefone}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.marcaModelo}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.placa}</Table.Cell>
-                      <Table.Cell textAlign='center'>
-                        <Button
-                          inverted
-                          circular
-                          icon='trash'
-                          color='red'
-                          title='Clique aqui para remover este cliente'
-                        />
-                      </Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table>
-            </Container>
-          </div>
+          <Grid.Column floated="right" width={5}>
+            {pdfList.map((pdf) => (
+              <Button
+                key={pdf.id}
+                inverted
+                circular
+                icon
+                labelPosition="right"
+                color="red"
+                onClick={() => gerarNovamentePDF()}
+              >
+                <Icon name="file pdf" />
+                {pdf.name}Gerar
+              </Button>
+            ))}
+          </Grid.Column>
         </Grid>
-        <br /><br /><br /><br /><br /><br /><br /><br />
-      </>
-    );
-  }
+      </Grid>
+    </>
+  );
 }
 
-export default DadosCadastrados;
+export default PdfPeticao;
+
+
+
+
+
