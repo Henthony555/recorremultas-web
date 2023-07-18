@@ -37,7 +37,7 @@ export default function MenuSistema () {
                         {estaLogado ? (
                             <>
 
-                                {/* 
+                                
                                 <Menu.Item
                                     name='meus dados'
                                     active={activeItem === 'meus dados'}
@@ -45,7 +45,7 @@ export default function MenuSistema () {
                                     as={Link}
                                     to='/usuario'
                                 />
-                                */}
+                                
 
                                 <Menu.Item
                                     name='criarPeticao'

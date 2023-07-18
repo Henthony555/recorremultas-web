@@ -1,7 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Header, Icon, Modal, Table } from 'semantic-ui-react';
-import axios from "axios";
 import { ENDERECO_API } from '../../util/Constantes';
 
 const Multas = () => {
@@ -75,7 +75,7 @@ const Multas = () => {
                       <Table.Cell>{multa.pontosDescontados}</Table.Cell>
                       <Table.Cell textAlign='center'>
                         <Button inverted circular icon='edit' color='blue' title='Editar Multa'>
-                          <Link to={{ pathname: "/admCadastroMulta", state: { id: multa.id } }} style={{ color: 'green' }}>
+                          <Link to= "/admCadastroMulta" state={{ id: multa.id }} style={{ color: 'green' }}>
                             <Icon name='edit' />
                           </Link>
                         </Button>&nbsp;

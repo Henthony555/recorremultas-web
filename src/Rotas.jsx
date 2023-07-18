@@ -7,18 +7,17 @@ import CadastrarMulta from './views/adm/CadastrarMulta';
 import GerenciarPeticao from './views/adm/GerenciarPeticao';
 import Multas from './views/adm/Multas';
 import Peticao from './views/adm/Peticao';
-import Registros from './views/adm/Registros';
 import ADMagencias from './views/adm/admAgencias';
 import Agencias from './views/agencias/Agencias';
 import Cadastro from './views/cadastro/Cadastro';
 import EsqueceuSenha from './views/esqueceuSenha/EsqueceuSenha';
 import Home from './views/home/Home';
 import Login from './views/login/Login';
-import AlterarSenha from './views/usuario/AlterarSenha';
+
+import ExibirMultas from './views/adm/ExibirMultas';
 import DadosCadastrados from './views/usuario/DadosCadastrados';
 import HistoricoPeticao from './views/usuario/HistoricoPeticao';
 import Usuario from './views/usuario/Usuario';
-import ExibirMultas from './views/adm/ExibirMultas';
 
 
 import PdfPeticao from './views/CriarPeticao/pdfPeticao';
@@ -34,8 +33,7 @@ function Rotas() {
                 <Route path="esqueceuSenha" element={ <EsqueceuSenha/> } />
 
                 <Route path="usuario" element={ <Usuario/> } />
-                <Route path="DadosCadastrados" element={ <DadosCadastrados/>} />
-                <Route path="AlterarSenha" element={ <AlterarSenha/>} />
+                <Route path="DadosCadastrados" element={ <DadosCadastrados/>} />               
                 <Route path="HistoricoPeticao" element={ <HistoricoPeticao/>} />
                 
                 <Route path="criarPeticao" element={ <CriarPeticao/> } />
@@ -43,15 +41,13 @@ function Rotas() {
               
                 <Route path="agencias" element={ <Agencias/> } />
 
-                <Route path="admMultas" element={<CadastrarMulta/>} />
-                <Route path="/exibirMultas" element={<ExibirMultas/>} />
                 
+                <Route path="/exibirMultas" element={<ExibirMultas/>} />
                 <Route path="admagencias" element={ <ADMagencias/> } />
                 <Route path="admGerenciarPeticao" element={ <GerenciarPeticao/>} /> 
                 <Route path="listAgencias" element={ <ListAgencias/> } />
                 <Route path="admMultas" element={ <Multas/>} />   
                 <Route path="admPeticao" element={ <Peticao/>} />
-                <Route path="admRegistros" element={ <Registros/>} />
                 <Route path="admCadastroMulta" element={ <CadastrarMulta/>} />
 
                 <Route path="pdf" element={ <PdfPeticao/>} />

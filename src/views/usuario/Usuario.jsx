@@ -5,7 +5,7 @@ import perfil from "../../assets/img/square-image.png";
 
 const UserContext = React.createContext();
 
-class GerenciarPeticao extends React.Component {
+class Usuario extends React.Component {
   state = {
     userName: "John Doe", // Set a default value for now
     profilePhoto: perfil, // Set the default profile photo
@@ -64,12 +64,7 @@ class GerenciarPeticao extends React.Component {
                   <Icon name='file' /> Historico Petições
                 </Button>
               </Link>
-              <br /> <br />
-              <Link to={'/alterarSenha'}>
-                <Button inverted icon size='huge' color='orange' labelPosition='left' >
-                  <Icon name='save' /> Alterar Senha
-                </Button>
-              </Link>
+            
               <br /> <br />
             </Container>
           </div>
@@ -79,4 +74,4 @@ class GerenciarPeticao extends React.Component {
   }
 }
 
-export default GerenciarPeticao;
+export default Usuario;
