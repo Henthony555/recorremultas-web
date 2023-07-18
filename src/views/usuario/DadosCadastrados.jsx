@@ -17,7 +17,7 @@ const firebaseApp = initializeApp( {
     measurementId: "G-EHR5PLXT9R"
 });
 
-export default function   () {
+export default function DadosCadastrados  () {
     const [userList, setUserList] = useState([]);
     const auth = getAuth();
     useEffect(() => {
@@ -25,17 +25,12 @@ export default function   () {
         const naoAutenticado = onAuthStateChanged(auth, (user) => {
           if (user) {
             // O usuário está autenticado, você pode acessar seus dados aqui
-            const uid = user.uid;
-            const email = user.email;
-            
-            // Outros dados do usuário
+            const {uid, email }= user;
     
             console.log('Dados do usuário:', uid, email);
-    
             // Atualiza a lista de usuários com os dados do usuário atual
-            setUserList([{ id: uid, email }]);
+            setUserList([{ uid, email }]);
           } else {
-            // O usuário não está autenticado
             console.log('Usuário não autenticado');
           }
         });

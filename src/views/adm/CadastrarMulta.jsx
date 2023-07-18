@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button, Container, Divider, Form, Grid, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../util/Constantes';
 import { notifyError, notifySuccess } from '../../util/Util';
 
 const CadastrarMulta = () => {
   const { state } = useLocation();
-
-  const [IdMulta, setIdMulta] = useState();
-  const [codigo, setCodigo] = useState("");
-  const [infracao, setInfracao] = useState("");
-  const [valorMulta, setValorMulta] = useState("");
-  const [pontosDescontados, setPontosDescontados] = useState("");
-  const [grauMulta, setGrauMulta] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (state != null && state.id != null) {
@@ -33,6 +27,13 @@ const CadastrarMulta = () => {
     }
   }, [state]);
 
+  const [IdMulta, setIdMulta] = useState();
+  const [codigo, setCodigo] = useState("");
+  const [infracao, setInfracao] = useState("");
+  const [valorMulta, setValorMulta] = useState("");
+  const [pontosDescontados, setPontosDescontados] = useState("");
+  const [grauMulta, setGrauMulta] = useState("");
+
   function salvar() {
     const multaRequest = {
       codigo: codigo,
@@ -40,26 +41,30 @@ const CadastrarMulta = () => {
       valorMulta: valorMulta,
       pontosDescontados: pontosDescontados,
       grauMulta: grauMulta
-    };
+
+    }
 
     if (IdMulta != null) {
       // Alteração:
-      axios.put(ENDERECO_API + "api/multa/" + IdMulta, multaRequest)
+      axios.put(ENDERECO_API + "api/multa/" + IdMulta, multaRequest) 
         .then((response) => {
+          console.log(IdMulta)
           notifySuccess("Multa alterada com sucesso.");
+          navigate('/admMultas')
         })
         .catch((error) => {
           notifyError("Erro ao alterar multa.");
-        });
+        })
     } else {
       // Cadastro:
       axios.post(ENDERECO_API + "api/multa", multaRequest)
         .then((response) => {
           notifySuccess('Multa cadastrada com sucesso.');
+          navigate('/admMultas')
         })
         .catch((error) => {
           notifyError('Erro ao incluir a multa.');
-        });
+        })
     }
   }
 
@@ -135,6 +140,7 @@ const CadastrarMulta = () => {
                 </Form.Group>
                 <br /><br /><br />
 
+                <Link to={'/admMultas'}>
                 <Button
                   type="button"
                   inverted
@@ -144,8 +150,9 @@ const CadastrarMulta = () => {
                   color='orange'
                 >
                   <Icon name='reply' />
-                  <Link to={'/admMultas'}>Voltar</Link>
+                  Voltar
                 </Button>
+                </Link>
 
                 <Button
                   type="button"
@@ -156,9 +163,11 @@ const CadastrarMulta = () => {
                   color='orange'
                   floated='right'
                   onClick={salvar}
+                  
                 >
                   <Icon name='file alternate' />
                   Cadastrar
+                  
                 </Button>
               </Form>
             </div>

@@ -33,13 +33,6 @@ class GerenciarPeticao extends React.Component {
                                     </Button>
                                 </Link>
                                 <br /> <br />
-                                <Link to={'/admRegistros'}>
-                                    <Button inverted icon size='huge' color='orange' labelPosition='left' >
-                                        <Icon name='user' />Registros
-                                    </Button>
-                                </Link>
-
-
 
                             </>
 
