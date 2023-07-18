@@ -22,7 +22,7 @@ export default function   () {
     const auth = getAuth();
     useEffect(() => {
         const auth = getAuth();
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const naoAutenticado = onAuthStateChanged(auth, (user) => {
           if (user) {
             // O usuário está autenticado, você pode acessar seus dados aqui
             const uid = user.uid;
@@ -40,7 +40,7 @@ export default function   () {
           }
         });
     
-        return () => unsubscribe();
+        return () => naoAutenticado();
       }, []);
         return (
             <>
