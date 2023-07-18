@@ -18,7 +18,10 @@ import AlterarSenha from './views/usuario/AlterarSenha';
 import DadosCadastrados from './views/usuario/DadosCadastrados';
 import HistoricoPeticao from './views/usuario/HistoricoPeticao';
 import Usuario from './views/usuario/Usuario';
+import CadastrarMulta from './views/adm/CadastrarMulta';
+import ExibirMultas from './views/adm/ExibirMultas';
 
+s
 import PdfPeticao from './views/CriarPeticao/pdfPeticao';
 import ListAgencias from './views/adm/ListAgencias';
 
@@ -40,6 +43,9 @@ function Rotas() {
                 <Route path="formularioPeticao" element={ <FormularioPeticao/> } />
               
                 <Route path="agencias" element={ <Agencias/> } />
+
+                <Route path="admMultas" element={CadastrarMulta} />
+                <Route path="/exibirMultas" element={ExibirMultas} />
                 
                 <Route path="admagencias" element={ <ADMagencias/> } />
                 <Route path="admGerenciarPeticao" element={ <GerenciarPeticao/>} /> 
