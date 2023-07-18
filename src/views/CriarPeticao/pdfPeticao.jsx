@@ -35,12 +35,15 @@ const styles = StyleSheet.create({
 function PDF(){
 
     const [dadosPeticao, setDadosPeticao] = useState([]);
+    const [dadosMulta, setDadosMulta] = useState([]);
 
     useEffect(() => {
    
         var peticao = JSON.parse(localStorage.getItem('peticao'));
+        var multa = JSON.parse(localStorage.getItem('multa'));
         setDadosPeticao(peticao)
-        console.log(dadosPeticao.nacionalidade);
+        setDadosMulta(multa)
+        //console.log(dadosPeticao.nacionalidade);
      }, []);
 
     return(<Document>
@@ -80,7 +83,7 @@ function PDF(){
             </Text>
 
             <Text style={styles.Texto}>
-                (suposta infração)
+                {dadosMulta.infracao}
             </Text>
 
             <Text style={styles.SubTitlo}>II - DO DIREITO</Text>

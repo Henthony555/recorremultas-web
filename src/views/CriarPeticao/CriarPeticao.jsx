@@ -12,6 +12,17 @@ class CriarPeticao extends React.Component {
         listaMultas: []
     }
 
+    handleMultaSelecionada = (idMulta) => {
+        axios.get(ENDERECO_API + "api/multa/" + idMulta)
+          .then((response) => {
+            const multaSelecionada = response.data;
+            localStorage.setItem('multa', JSON.stringify(multaSelecionada));
+          })
+          .catch((error) => {
+            console.error('Error fetching multa data:', error);
+          });
+      };
+
     componentDidMount = () => {
 
         this.carregarLista();
@@ -61,7 +72,7 @@ class CriarPeticao extends React.Component {
                                                 <strong style={{ color: 'red' }}>R${multa.valorMulta}<br /> {multa.grauMulta} - {multa.pontosDescontados} pontos </strong>
                                             </Card.Description>
                                         </Card.Content>
-                                        <Button animated basic color='none'>
+                                        <Button animated basic color='none' onClick={() => this.handleMultaSelecionada(multa.id)}>
                                             <Link to={'/formularioPeticao'}>
                                                 <Button.Content visible>Próximo</Button.Content>
                                                 <Button.Content hidden>
