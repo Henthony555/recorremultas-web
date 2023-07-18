@@ -1,102 +1,93 @@
-import axios from 'axios';
-import React from 'react';
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import 'firebase/compat/auth';
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Icon, Table } from 'semantic-ui-react';
 
-class DadosCadastrados extends React.Component {
-  state = {
-    listaDadosCadastrados: []
-  }
 
-  componentDidMount() {
-    this.carregarLista();
-  }
+const firebaseApp = initializeApp( {
+    apiKey: "AIzaSyC309U3GMWr0pcHXvktjH_fEOMB_B-ZVms",
+    authDomain: "re-corre-multas.firebaseapp.com",
+    databaseURL: "https://re-corre-multas-default-rtdb.firebaseio.com",
+    projectId: "re-corre-multas",
+    storageBucket: "re-corre-multas.appspot.com",
+    messagingSenderId: "669467425665",
+    appId: "1:669467425665:web:ae9577ef0515b756c0c680",
+    measurementId: "G-EHR5PLXT9R"
+});
 
-  carregarLista = () => {
-    axios.get("http://localhost:5438/api/peticao")
-      .then((response) => {
-        this.setState({
-          listaDadosCadastrados: response.data
+export default function   () {
+    const [userList, setUserList] = useState([]);
+    const auth = getAuth();
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // O usuário está autenticado, você pode acessar seus dados aqui
+            const uid = user.uid;
+            const email = user.email;
+            
+            // Outros dados do usuário
+    
+            console.log('Dados do usuário:', uid, email);
+    
+            // Atualiza a lista de usuários com os dados do usuário atual
+            setUserList([{ id: uid, email }]);
+          } else {
+            // O usuário não está autenticado
+            console.log('Usuário não autenticado');
+          }
         });
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  };
+    
+        return () => unsubscribe();
+      }, []);
+        return (
+            <>
+                <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle' >
+                    <div style={{ marginTop: '3%' }}>
+                        <Container textAlign="justified">
+                            <h1 style={{ fontSize: '3rem' }}> Registros</h1>
+                            <Divider />
 
-  formatarData = (dataParam) => {
-    if (dataParam == null || dataParam === '') {
-      return '';
+                            <h2>Lista de Usuários</h2>
+                            
+                            <Table celled>
+                            <Table.Header>
+                                <Table.Row>
+                                <Table.HeaderCell>Email</Table.HeaderCell>
+                                <Table.HeaderCell>UID</Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                {userList.map((user) => (
+                                <Table.Row key={user.id}>
+                                    <Table.Cell>{user.email}</Table.Cell>
+                                    <Table.Cell>{user.uid}</Table.Cell>
+                                </Table.Row>
+                                ))}
+                            </Table.Body>
+                            </Table>
+                            <br /><br /><br />
+                            <Link to={'/admGerenciarPeticao'}>
+                                <Button
+                                    type="button"
+                                    inverted
+                                    circular
+                                    icon
+                                    labelPosition='left'
+                                    color='orange'
+                                >
+                                    <Icon name='reply' />
+                                    Voltar
+                                </Button>
+                            </Link>
+                        </Container>
+                    </div>
+                </Grid>
+               
+            </>
+        )
     }
 
-    let dia = dataParam.substr(8, 2);
-    let mes = dataParam.substr(5, 2);
-    let ano = dataParam.substr(0, 4);
-    let dataFormatada = dia + '/' + mes + '/' + ano;
-
-    return dataFormatada;
-  };
-
-  render() {
-    return (
-      <>
-        <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-          <div style={{ marginTop: '3%' }}>
-            <Container textAlign="justified">
-              <h1> <Icon name='clipboard outline' /><Icon /> Dados Cadastrados</h1>
-              <Divider />
-
-              <br /><br /><br />
-
-              <Table color='orange' sortable celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Nome Completo</Table.HeaderCell>
-                    <Table.HeaderCell>Nacionalidade</Table.HeaderCell>
-                    <Table.HeaderCell>Estado Civil</Table.HeaderCell>
-                    <Table.HeaderCell>Profissão</Table.HeaderCell>
-                    <Table.HeaderCell>CNH</Table.HeaderCell>
-                    <Table.HeaderCell>Órgão expedidor</Table.HeaderCell>
-                    <Table.HeaderCell>CPF</Table.HeaderCell>
-                    <Table.HeaderCell>Telefone</Table.HeaderCell>
-                    <Table.HeaderCell>Marca e modelo do veículo</Table.HeaderCell>
-                    <Table.HeaderCell>Placa</Table.HeaderCell>
-                    <Table.HeaderCell textAlign='center' width={2}>Ações</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                  {this.state.listaDadosCadastrados.map((dadosCadastrados, index) => (
-                    <Table.Row key={index}>
-                      <Table.Cell>{dadosCadastrados.nomeCompleto}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.nacionalidade}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.estadoCivil}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.profissao}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.cnh}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.orgaoExpeditor}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.cpf}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.telefone}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.marcaModelo}</Table.Cell>
-                      <Table.Cell>{dadosCadastrados.placa}</Table.Cell>
-                      <Table.Cell textAlign='center'>
-                        <Button
-                          inverted
-                          circular
-                          icon='trash'
-                          color='red'
-                          title='Clique aqui para remover este cliente'
-                        />
-                      </Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table>
-            </Container>
-          </div>
-        </Grid>
-        <br /><br /><br /><br /><br /><br /><br /><br />
-      </>
-    );
-  }
-}
-
-export default DadosCadastrados;
