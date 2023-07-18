@@ -8,7 +8,11 @@ import { ENDERECO_API } from '../../util/Constantes';
         const [openModal, setOpenModal] = useState(false);
         const [idRemover, setIdRemover] = useState(null);
         const [listaPeticoes, setListaPeticoes] = useState([]);
+        const [peticaoSelecionada, setPeticaoSelecionada] = useState(null);
 
+        const abrirModalDetalhes = (peticao) => {
+          setPeticaoSelecionada(peticao);
+        };
 
     useEffect(() => {
         carregarLista();
@@ -56,17 +60,7 @@ import { ENDERECO_API } from '../../util/Constantes';
                     <Table.HeaderCell>Profissão</Table.HeaderCell>
                     <Table.HeaderCell>CNH</Table.HeaderCell>
                     <Table.HeaderCell>Órgão Expeditor</Table.HeaderCell>
-                    <Table.HeaderCell>CPF</Table.HeaderCell>
-                    <Table.HeaderCell>Telefone</Table.HeaderCell>
-                    <Table.HeaderCell>Endereço Completo</Table.HeaderCell>
-                    <Table.HeaderCell>Marca/Modelo</Table.HeaderCell>
-                    <Table.HeaderCell>Placa</Table.HeaderCell>
-                    <Table.HeaderCell>Renavam</Table.HeaderCell>
-                    <Table.HeaderCell>Chassi</Table.HeaderCell>
-                    <Table.HeaderCell>Data da Multa</Table.HeaderCell>
-                    <Table.HeaderCell>Órgão Emissor</Table.HeaderCell>
-                    <Table.HeaderCell>Notificação</Table.HeaderCell>
-                    <Table.HeaderCell>Justificativa de Cancelamento</Table.HeaderCell>
+                    <Table.HeaderCell>...</Table.HeaderCell>
                     <Table.HeaderCell textAlign='center' width={2}>Ações</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
@@ -77,25 +71,17 @@ import { ENDERECO_API } from '../../util/Constantes';
                       <Table.Cell>{peticao.nacionalidade}</Table.Cell>
                       <Table.Cell>{peticao.estadoCivil}</Table.Cell>
                       <Table.Cell>{peticao.profissao}</Table.Cell>
+                      <Table.Cell>{peticao.cnh}</Table.Cell>
                       <Table.Cell>{peticao.orgaoExpeditor}</Table.Cell>
-                      <Table.Cell>{peticao.cpf}</Table.Cell>
-                      <Table.Cell>{peticao.telefone}</Table.Cell>
-                      <Table.Cell>{peticao.enderecoCompleto}</Table.Cell>
-                      <Table.Cell>{peticao.marcaModelo}</Table.Cell>
-                      <Table.Cell>{peticao.placa}</Table.Cell>
-                      <Table.Cell>{peticao.renavam}</Table.Cell>
-                      <Table.Cell>{peticao.chassi}</Table.Cell>
-                      <Table.Cell>{peticao.orgaoEmissor}</Table.Cell>
-                      <Table.Cell>{peticao.notificacao}</Table.Cell>
-                      <Table.Cell>{peticao.justificativaCancelamento}</Table.Cell>
-                      <Table.Cell>{peticao.id_usuario}</Table.Cell>
+                      <Table.Cell>...</Table.Cell>
                       <Table.Cell textAlign='center'>
                         <Button inverted circular icon='edit' color='blue' title='Editar Petição'>
                           <Link to={{ pathname: "/admCadastroMulta", state: { id: peticao.id } }} style={{ color: 'green' }}>
                             <Icon name='edit' />
                           </Link>
                         </Button>&nbsp;
-                        <Button inverted circular icon='trash' color='red' title='Remover Petição' onClick={() => confirmaRemover(peticao.id)} />
+                        <Button inverted circular icon='trash' color='red' title='Remover Petição' onClick={() => confirmaRemover(peticao.id)} />&nbsp;
+                        <Button inverted circular icon='eye' color='orange' title='Ver Petição' onClick={() => abrirModalDetalhes(peticao)} />
                       </Table.Cell>
                     </Table.Row>
                   ))}
@@ -137,6 +123,43 @@ import { ENDERECO_API } from '../../util/Constantes';
                         </Button>
                     </Modal.Actions>
                     </Modal>
+
+                    {peticaoSelecionada && (
+                    <Modal open={peticaoSelecionada !== null} onClose={() => setPeticaoSelecionada(null)}>
+                        <Modal.Header>
+                            <Icon name='paper plane' /> Detalhes da Petição
+                        </Modal.Header>
+                        <Modal.Content scrolling>
+
+                            <>
+                                <h5>Nome Completo: {peticaoSelecionada.nomeCompleto}</h5>
+                                <h5>Nacionalidade: {peticaoSelecionada.nacionalidade}</h5>
+                                <h5>Estado Civil: {peticaoSelecionada.estadoCivil}</h5>
+                                <h5>Profissão: {peticaoSelecionada.profissao}</h5>
+                                <h5>CNH: {peticaoSelecionada.cnh}</h5>
+                                <h5>Orgão Expeditor: {peticaoSelecionada.orgaoExpeditor}</h5>
+                                <h5>CPF: {peticaoSelecionada.cpf}</h5>
+                                <h5>Telefone: {peticaoSelecionada.telefone}</h5>
+                                <h5>Endereço Completo: {peticaoSelecionada.enderecoCompleto}</h5>
+                                <h5>MarcaModelo: {peticaoSelecionada.marcaModelo}</h5>
+                                <h5>Placa: {peticaoSelecionada.placa}</h5>
+                                <h5>Renavam: {peticaoSelecionada.renavam}</h5>
+                                <h5>Chassi: {peticaoSelecionada.chassi}</h5>
+                                <h5>Orgão Emissor: {peticaoSelecionada.orgaoEmissor}</h5>
+                                <h5>Notificação: {peticaoSelecionada.notificacao}</h5>
+                                <h5>justificativa do Cancelamento: {peticaoSelecionada.justificativaCancelamento}</h5>
+                                <h5>ID do Usuario: {peticaoSelecionada.id_usuario}</h5>
+                                
+                            </>
+
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button color='orange' onClick={() => setPeticaoSelecionada(null)}>
+                                Voltar <Icon name='chevron right' />
+                            </Button>
+                        </Modal.Actions>
+                    </Modal>
+                )}
                 </Grid>
 
             </>
